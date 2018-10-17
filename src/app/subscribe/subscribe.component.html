@@ -1,0 +1,35 @@
+<h1>Subscribe</h1>
+<h2>{{tmp}}</h2>
+<form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="loginSubscribe">Login</label>
+    <input formControlName="login" type="text" class="form-control" id="loginSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
+  </div>
+  <div class="form-group">
+    <label for="passwordSubscribe">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="passwordSubscribe" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label for="cpasswordSubscribe">Confirm password</label>
+    <input formControlName="cpassword" type="password" class="form-control" id="cpasswordSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
+  </div>
+  <div class="form-group">
+    <label for="emailSubscribe">Email</label>
+    <input formControlName="email" type="email" class="form-control" id="emailSubscribe" placeholder="Email" required>
+  </div><div class="form-group">
+    <label for="lastNameSubscribe">Last name</label>
+    <input formControlName="lname" type="text" class="form-control" id="lastNameSubscribe" aria-describedby="loginHelp" placeholder="Last name"required>
+  </div>
+  <div class="form-group">
+    <label for="firstNameSubscribe">First name</label>
+    <input formControlName="fname" type="text" class="form-control" id="firstNameSubscribe" placeholder="First name" required>
+  </div><div class="form-group">
+    <label for="birthdaySubscribe">Birthday</label>
+    <input formControlName="birthday" type="date" class="form-control" id="birthdaySubscribe" aria-describedby="loginHelp" placeholder="Birthday"required>
+  </div>
+  <div class="form-group">
+    <label for="countrySubscribe">Country</label>
+    <input formControlName="country" type="text" class="form-control" id="countrySubscribe" placeholder="Country" required>
+  </div>
+  <button [disabled]="!subscribeForm.valid" type="submit" class="btn btn-primary">Subscribe</button>
+</form>
