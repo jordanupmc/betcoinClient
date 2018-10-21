@@ -19,8 +19,8 @@ export class SubscribeComponent implements OnInit {
     email: new FormControl(''),
     birthday: new FormControl(''),
     country: new FormControl(''),
-    lname: new FormControl(''),
-    fname: new FormControl('')
+    lname: new FormControl('', Validators.pattern('[a-zA-Z]+')),
+    fname: new FormControl('', Validators.pattern('[a-zA-Z]+'))
   });
 
   tmp;

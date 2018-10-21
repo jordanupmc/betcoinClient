@@ -1,3 +1,9 @@
 <h2>{{toPrint}}</h2>
 <label>Unsubscribe to Betcoin</label>
-<button class="btn btn-primary" (click)="onClick()">Unsubscribe</button>
+<form [formGroup]="unsubForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+    </div>
+    <button [disabled]="!unsubForm.valid" type="submit" class="btn btn-primary">Unsubscribe</button>
+  </form>

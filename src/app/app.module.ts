@@ -5,23 +5,28 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule }    from '@angular/common/http';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
+import { LogoutComponent } from './logout/logout.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SubscribeComponent,
-    UnsubscribeComponent
+    UnsubscribeComponent,
+    LogoutComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     AppRoutingModule
   ],
   providers: [],

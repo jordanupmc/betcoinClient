@@ -1,4 +1,5 @@
 <h2>{{result}}</h2>
+<img [src]="urlImg" *ngIf="urlImg" />
 <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="loginInput">Login</label>

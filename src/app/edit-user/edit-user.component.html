@@ -1,0 +1,9 @@
+<img [src]="urlImg" *ngIf="urlImg" />
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="inputPassword">Current password</label>
+    <input formControlName="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+  </div>
+  <button [disabled]="!editUserForm.valid" type="submit" class="btn btn-primary">Submit</button>
+</form>

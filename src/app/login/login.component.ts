@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user-service.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { UserService } from '../user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice : AuthService) { }
+  constructor(private authservice : AuthService, private userservice : UserService) { }
 
   authForm = new FormGroup({
     login: new FormControl(''),
@@ -18,11 +18,18 @@ export class LoginComponent implements OnInit {
   });
   
   result;
+  urlImg;
 
   ngOnInit() {
   }
+
   
   onSubmit(){
+    function callbackN(profile){
+      console.log(profile)
+    }
+    this.urlImg=this.userservice.getIconUrl("jordan.ji-ji@live.fr");
+    
     this.authservice
     .login(this.authForm.value.login, this.authForm.value.password)
     .subscribe(  x  => { 
@@ -30,8 +37,11 @@ export class LoginComponent implements OnInit {
                             this.result = x['errorMessage'];
                           }
                           else{
-                            this.result = x['token'];
+                            this.result = "WELCOME "+ this.authForm.value.login+" your token is: "+x['token'];
+                            localStorage.setItem("token", x['token'])
+                            localStorage.setItem("login", this.authForm.value.login)
                           }
+
                         }, 
                  e  => console.log(e)
     );

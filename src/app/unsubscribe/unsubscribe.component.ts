@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-unsubscribe',
@@ -11,13 +12,15 @@ export class UnsubscribeComponent implements OnInit {
   constructor(private userservice : UserService) { }
 
   toPrint;
+  unsubForm = new FormGroup({
+    password: new FormControl('')
+  });
 
   ngOnInit() {
   }
 
-  onClick(){
-    console.log("GO PLEASE")
-    this.userservice.unsubscribe('','')
+  onSubmit(){
+    this.userservice.unsubscribe(localStorage.getItem("login"), localStorage.getItem("token"),this.unsubForm.value.password)
     .subscribe( 
       x => {
               if(x['status'] == 'KO'){
