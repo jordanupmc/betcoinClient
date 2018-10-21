@@ -5,6 +5,7 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { ListPoolComponent } from './list-pool/list-pool.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'subscribe', component: SubscribeComponent},
   { path: 'logout', component: LogoutComponent},
   { path: 'editUser', component: EditUserComponent},
+  { path: 'listPool', component: ListPoolComponent},
   { path: 'unsubscribe', component: UnsubscribeComponent}
 
 ];

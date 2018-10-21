@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { UserService } from '../user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +9,7 @@ import { UserService } from '../user-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice : AuthService, private userservice : UserService) { }
+  constructor(private authservice : AuthService) { }
 
   authForm = new FormGroup({
     login: new FormControl(''),
@@ -25,11 +24,7 @@ export class LoginComponent implements OnInit {
 
   
   onSubmit(){
-    function callbackN(profile){
-      console.log(profile)
-    }
-    this.urlImg=this.userservice.getIconUrl("jordan.ji-ji@live.fr");
-    
+
     this.authservice
     .login(this.authForm.value.login, this.authForm.value.password)
     .subscribe(  x  => { 

@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { ListPoolComponent } from './list-pool/list-pool.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     SubscribeComponent,
     UnsubscribeComponent,
     LogoutComponent,
-    EditUserComponent
+    EditUserComponent,
+    ListPoolComponent
   ],
   imports: [
     BrowserModule,
