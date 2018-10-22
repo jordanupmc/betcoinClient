@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { apiURL } from './url.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BetPoolService {
   constructor(private http: HttpClient) { }
-  private apiURL = 'https://betcoinserver.herokuapp.com/'
+
+
   public getPools(){
-    return this.http.get(this.apiURL+"getListPool");
+    return this.http.get(apiURL+"getListPool");
   }
 }
