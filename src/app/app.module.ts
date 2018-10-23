@@ -14,6 +14,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ListPoolComponent } from './list-pool/list-pool.component';
 import { BetPoolDetailComponent } from './bet-pool-detail/bet-pool-detail.component';
+import { PriceChartComponent } from './price-chart/price-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { BetPoolDetailComponent } from './bet-pool-detail/bet-pool-detail.compon
     LogoutComponent,
     EditUserComponent,
     ListPoolComponent,
-    BetPoolDetailComponent
+    BetPoolDetailComponent,
+    PriceChartComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { BetPoolDetailComponent } from './bet-pool-detail/bet-pool-detail.compon
     ReactiveFormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

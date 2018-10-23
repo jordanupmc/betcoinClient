@@ -7,7 +7,9 @@ import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ListPoolComponent } from './list-pool/list-pool.component';
+
 import { BetPoolDetailComponent }  from './bet-pool-detail/bet-pool-detail.component';
+import { PriceChartComponent } from './price-chart/price-chart.component';
 
 
 
@@ -19,8 +21,8 @@ const routes: Routes = [
   { path: 'editUser', component: EditUserComponent},
   { path: 'listPool', component: ListPoolComponent},
   { path: 'unsubscribe', component: UnsubscribeComponent},
-  { path: 'poolDetail/:id', component: BetPoolDetailComponent}
-
+  { path: 'poolDetail/:id', component: BetPoolDetailComponent},
+  { path: 'chart', component: PriceChartComponent}
 
 ];
 
