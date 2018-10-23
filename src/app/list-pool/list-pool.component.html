@@ -1,8 +1,9 @@
-<div *ngFor="let pool of activePools" class="card border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header"><img [src]="pool.imgUrl"class="card-img-top" style="width: 40px"/>{{pool.cryptocurrency}}</div>
-            <div class="card-body">
-              <h5 class="card-title">{{pool.name}}</h5>
-              <p class="card-text">Esmera esmera zawa</p>
-              <p class="card-text">Close at {{pool.closingbet}}</p>
-            </div>
+<div *ngFor="let pool of activePools" class="card border-light mb-3" style="max-width: 18rem;" (click)="enterPool(pool)" routerLink="/poolDetail/{{pool.idbetpool}}">>
+	<div class="card-header"><img [src]="pool.imgUrl"class="card-img-top" style="width: 40px"/>{{pool.cryptocurrency}}</div>
+	<div class="card-body">
+	  <h5 class="card-title">{{pool.name}}</h5>
+	  <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
+	  <p class="card-text">Open at {{pool.openingbet}}</p>
+	  <p class="card-text">Close at {{pool.closingbet}}</p>
+	</div>
 </div>

@@ -36,4 +36,21 @@ export class ListPoolComponent implements OnInit {
     return pools;
   }
 
+
+  enterPool(pool){
+    console.log(localStorage.getItem("login")+" entre dans la pool "+ pool.idbetpool);
+    this.betpool
+    .enterPool(localStorage.getItem("login"), pool.idbetpool, localStorage.getItem("token"))
+    .subscribe(  x  => { 
+                          if(x['status'] == 'KO' ){
+                            console.log(x['errorMessage']);
+                          }
+                          else{
+                            console.log("Succes : Enter Pool");
+                          }
+                        }, 
+                 e  => console.log(e)
+    );
+  }
+
 }
