@@ -12,6 +12,8 @@ import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ListPoolComponent } from './list-pool/list-pool.component';
+import { PriceChartComponent } from './price-chart/price-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ListPoolComponent } from './list-pool/list-pool.component';
     UnsubscribeComponent,
     LogoutComponent,
     EditUserComponent,
-    ListPoolComponent
+    ListPoolComponent,
+    PriceChartComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { ListPoolComponent } from './list-pool/list-pool.component';
     ReactiveFormsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

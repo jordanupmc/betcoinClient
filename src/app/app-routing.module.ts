@@ -6,6 +6,7 @@ import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ListPoolComponent } from './list-pool/list-pool.component';
+import { PriceChartComponent } from './price-chart/price-chart.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent},
   { path: 'editUser', component: EditUserComponent},
   { path: 'listPool', component: ListPoolComponent},
-  { path: 'unsubscribe', component: UnsubscribeComponent}
+  { path: 'unsubscribe', component: UnsubscribeComponent},
+  { path: 'chart', component: PriceChartComponent}
 
 ];
 
