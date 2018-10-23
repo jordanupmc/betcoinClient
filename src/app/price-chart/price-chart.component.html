@@ -10,6 +10,20 @@
                     [chartType]="lineChartType"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
+                    <p>Afficher un intervalle</p>
+                    <form [formGroup]="intervalForm" (ngSubmit)="changeInterval()">
+                      <p>Depuis</p>
+                      <div class="form-group">
+                        <input formControlName="fromDate" type="date" required>
+                        <input formControlName="fromTime" type="time" required>
+                      </div>
+                      <p>Jusqu'à</p>
+                      <div class="form-group">
+                        <input formControlName="toDate" type="date" required>
+                        <input formControlName="toTime" type="time" required>
+                      </div>
+                      <button [disabled]="!intervalForm.valid" type="submit" class="btn btn-primary">Changer l'intervalle</button>
+                    </form>            
         </div>
       </div>
       <div class="col-md-6" style="margin-bottom: 10px">

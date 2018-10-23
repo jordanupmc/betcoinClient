@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CryptoCompareService } from '../crypto-compare.service';
-import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-price-chart',
@@ -11,7 +11,7 @@ export class PriceChartComponent implements OnInit {
 
   @Input() currency : string;
 
-  constructor(private cryptoservice : CryptoCompareService) { this.currency = 'BTC'}
+  constructor(private cryptoservice : CryptoCompareService) { this.currency = 'ETH'}
   
   ngOnInit() {
     this.fillChart(3);
@@ -22,22 +22,55 @@ export class PriceChartComponent implements OnInit {
     return new Date(ts * 1000);
   }
   
+  intervalForm = new FormGroup({
+    fromDate: new FormControl(''),
+    fromTime: new FormControl(''),
+    toDate: new FormControl(''),
+    toTime: new FormControl('')
+  });
+  
+  // hour before date now
   public fillChart(hour : number){
     this.lineChartData = [];
     this.lineChartLabels=[];
-    let today = new Date();
-    this.cryptoservice.getPriceBetweenInterval(this.currency, Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime() /1000) , Math.floor(Date.now() /1000))
+    this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime() /1000) , Math.floor(Date.now() /1000))
+  }
+
+
+  private getPriceBetweenInterval(from: number, to: number){
+    this.cryptoservice.getPriceBetweenInterval(this.currency, from, to)
     .subscribe(
       res => {
+        this.lineChartData = [];
+        this.lineChartLabels=[];
         let tmpArray : Array<number>= [];
         for(let obj of res['results'][0]['Data']){
           tmpArray.push(obj['close']);
           this.lineChartLabels.push(this.tsToDate(obj['time']));
         }
         this.lineChartData.push({data: tmpArray, label: this.currency})
-        
+      },
+      err => {
+        console.log("getPriceBetweenInterval "+err)
       }
     );
+  }
+  changeInterval(){
+    let from = (new Date (this.intervalForm.value.fromDate+" "+this.intervalForm.value.fromTime).getTime()) / 1000;
+    let to = (new Date (this.intervalForm.value.toDate+" "+this.intervalForm.value.toTime).getTime()) / 1000;
+    let now = Math.floor(Date.now() /1000);
+    if(to > now)
+      to = now;
+    if(from > now)
+      from = now;
+
+    if( from == to )
+      from = Math.floor(new Date(Date.now() - (1000*60*60*3) ).getTime() /1000);
+
+    if(from > to)
+      this.getPriceBetweenInterval(to, from);
+    else
+      this.getPriceBetweenInterval(from, to);
   }
   
   public lineChartLabels:Array<any> = [];
@@ -75,17 +108,6 @@ export class PriceChartComponent implements OnInit {
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
- 
-  // public randomize():void {
-  //   let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-  //   for (let i = 0; i < this.lineChartData.length; i++) {
-  //     _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-  //     for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-  //       _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-  //     }
-  //   }
-  //   this.lineChartData = _lineChartData;
-  // }
  
   // events
   public chartClicked(e:any):void {
