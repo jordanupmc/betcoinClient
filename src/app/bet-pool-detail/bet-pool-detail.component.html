@@ -5,7 +5,7 @@
   <p class="card-text">Close at {{pool?.closingbet}}</p>
 </div>
 
-<button (click)="quitPool()" class="btn btn-primary">Unscribe Pool</button>
+<button (click)="quitPool()" class="btn btn-primary" routerLink="/listPool">Unscribe Pool</button>
 <br>
 
 <button (click)="show = !show" class="btn btn-primary">{{show ? 'Cancel current bet' : 'Start a bet'}}</button>

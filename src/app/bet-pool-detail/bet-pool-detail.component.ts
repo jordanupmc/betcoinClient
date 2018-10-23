@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 import { BetPoolService } from '../bet-pool.service';
-import { BetPool } from './betPool';
+import { BetPool } from '../betPool';
 
 
 
@@ -25,7 +25,7 @@ export class BetPoolDetailComponent implements OnInit {
      ) { }
 
 
-  pool : BetPool;
+  pool;
   betForm = new FormGroup({
     ammount: new FormControl(''),
     betValue: new FormControl('')

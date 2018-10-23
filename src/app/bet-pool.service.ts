@@ -20,7 +20,7 @@ export class BetPoolService {
     return this.http.get(apiURL+"enterPool?token="+token+"&login="+login+"&idPool="+idPool);
   }
 
-  public getPool(id): Observable<BetPool>{
+  public getPool(id){
     return this.http.get(apiURL+"getPoolInfo?idPool="+id);
   }
 

@@ -43,10 +43,10 @@ export class ListPoolComponent implements OnInit {
     .enterPool(localStorage.getItem("login"), pool.idbetpool, localStorage.getItem("token"))
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
-                            this.result = x['errorMessage'];
+                            console.log(x['errorMessage']);
                           }
                           else{
-                            this.result = "Enter ";
+                            console.log("Succes : Enter Pool");
                           }
                         }, 
                  e  => console.log(e)
