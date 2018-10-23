@@ -14,19 +14,32 @@ export class PriceChartComponent implements OnInit {
   constructor(private cryptoservice : CryptoCompareService) { this.currency = 'BTC'}
   
   ngOnInit() {
-      this.cryptoservice.getPriceBetweenInterval(this.currency, new Date(), new Date())
-      .subscribe(
-        res => {
-          let tmpArray : Array<number>= [];
-          for(let obj of res['results'][0]['Data']){
-            tmpArray.push(obj['close']);
-            this.lineChartLabels.push(obj['time']);
-          }
-          this.lineChartData.push({data: tmpArray, label: this.currency})
-        }
-      );
-    
+    this.fillChart(3);
   }
+  
+
+  public tsToDate(ts){
+    return new Date(ts * 1000);
+  }
+  
+  public fillChart(hour : number){
+    this.lineChartData = [];
+    this.lineChartLabels=[];
+    let today = new Date();
+    this.cryptoservice.getPriceBetweenInterval(this.currency, Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime() /1000) , Math.floor(Date.now() /1000))
+    .subscribe(
+      res => {
+        let tmpArray : Array<number>= [];
+        for(let obj of res['results'][0]['Data']){
+          tmpArray.push(obj['close']);
+          this.lineChartLabels.push(this.tsToDate(obj['time']));
+        }
+        this.lineChartData.push({data: tmpArray, label: this.currency})
+        
+      }
+    );
+  }
+  
   public lineChartLabels:Array<any> = [];
 
   public lineChartData:Array<any> = [];
