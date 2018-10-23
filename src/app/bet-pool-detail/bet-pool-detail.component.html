@@ -1,0 +1,28 @@
+<div class="card-body">
+  <h5 class="card-title">{{pool?.name}}</h5>
+  <h5 class="card-title">Id : {{pool?.idbetpool}}</h5>
+  <p class="card-text">Open at {{pool?.openingbet}}</p>
+  <p class="card-text">Close at {{pool?.closingbet}}</p>
+</div>
+
+<button (click)="quitPool()" class="btn btn-primary">Unscribe Pool</button>
+<br>
+
+<button (click)="show = !show" class="btn btn-primary">{{show ? 'Cancel current bet' : 'Start a bet'}}</button>
+    <br>
+
+<div *ngIf="show">
+
+<form [formGroup]="betForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="ammountInput">Ammount to bet</label>
+    <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Enter ammount"required>
+  </div>
+  <div class="form-group">
+    <label for="betValueInput">Bet value</label>
+    <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Enter the bet value" required>
+  </div>
+  <button [disabled]="!betForm.valid" type="submit" class="btn btn-primary">Bet !</button>
+</form>
+
+</div>
