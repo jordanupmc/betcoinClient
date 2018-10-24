@@ -12,9 +12,9 @@ export class EditUserComponent implements OnInit {
 
   constructor(private userservice: UserService) { }
   editUserForm = new FormGroup({
-    passwordcur: new FormControl(''),
-    passwordnew: new FormControl(''),
-    passwordconf: new FormControl(''),
+    passwordCur: new FormControl(''),
+    passwordNew: new FormControl(''),
+    passwordConf: new FormControl(''),
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     email: new FormControl(''),
@@ -28,20 +28,21 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit() {
-    const fieldName: string[] = ["password", "last_name", "first_name", "email", "country"];
-    if (this.editUserForm.value.passwordnew === this.editUserForm.value.passwordconf) {
-      const newValue: string[] = [this.editUserForm.value.passwordnew, this.editUserForm.value.lastname,
+    const fieldName = ["password", "last_name", "first_name", "email", "country"];
+    if (this.editUserForm.value.passwordNew === this.editUserForm.value.passwordConf) {
+      this.result = '';
+      const newValue: string[] = [this.editUserForm.value.passwordNew, this.editUserForm.value.lastname,
         this.editUserForm.value.firstname, this.editUserForm.value.email, this.editUserForm.value.country];
       let i = 0;
       let test = 0;
       for (i = 0; i < 5; i++) {
-        if (newValue[i] != null) {
+        if (newValue[i] !== '' ) {
           test = 1;
         }
       }
-      if (test !== 1) {
+      if (test === 1) {
         this.userservice.editUser(localStorage.getItem("login"), localStorage.getItem("token"),
-          this.editUserForm.value.passwordcur, fieldName, newValue)
+          this.editUserForm.value.passwordCur, fieldName, newValue)
           .subscribe(x => {
               if ( x['status'] === 'KO') {
                 this.result = x['errorMessage'];
@@ -53,7 +54,7 @@ export class EditUserComponent implements OnInit {
           );
       }
     } else {
-      this.editUserForm.value.passwordconf = 'password doesn\'t match';
+      this.result = 'password doesn\'t match';
     }
   }
 }
