@@ -1,21 +1,34 @@
+<h2>{{result}}</h2>
 <img [src]="urlImg" *ngIf="urlImg" />
 <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
-
   <div class="form-group">
     <label for="inputPasswordCur">Current password</label>
     <input formControlName="passwordCur" type="password" class="form-control" id="inputPasswordCur" placeholder="Current Password" >
+  </div>
+  <div class="form-group">
     <label for="inputPasswordNew">New password</label>
     <input formControlName="passwordNew" type="password" class="form-control" id="inputPasswordNew" placeholder="New Password" >
+  </div>
+  <div class="form-group">
     <label for="inputPasswordNewConf">Confirm new password</label>
     <input formControlName="passwordConf" type="password" class="form-control" id="inputPasswordNewConf" placeholder="Confirm Password" >
+  </div>
+  <div class="form-group">
     <label for="firstName">First name</label>
     <input formControlName="firstname" type="text" class="form-control" id="firstName" placeholder="First name" >
+  </div>
+  <div class="form-group">
     <label for="lastName">Last name</label>
     <input formControlName="lastname" type="text" class="form-control" id="lastName" placeholder="Last name" >
+  </div>
+  <div class="form-group">
     <label for="email">Email</label>
     <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email" >
+  </div>
+  <div class="form-group">
     <label for="country">Country</label>
     <select name="Country" id="country">
+      <option value="">-- Please select an option --</option>
       <option value="FR">France</option>
       <option value="GER">Germany</option>
       <option value="US">United States</option>
@@ -23,5 +36,5 @@
     </select>
   </div>
 
-  <button [disabled]="!editUserForm.valid" type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
