@@ -44,7 +44,7 @@ export class BetPoolDetailComponent implements OnInit {
 
   onSubmit(){
     this.betPoolService
-    .addBet(localStorage.getItem("login"), localStorage.getItem("token"), this.pool.idbetpool, this.betForm.value.ammount, this.betForm.value.betValue)
+    .addBet(localStorage.getItem("login"), localStorage.getItem("token"), JSON.stringify(this.pool.idbetpool), this.betForm.value.ammount, this.betForm.value.betValue)
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
 
@@ -61,8 +61,9 @@ export class BetPoolDetailComponent implements OnInit {
 
   quitPool(){
     this.betPoolService
-    .quitPool(localStorage.getItem("login"), this.pool.idbetpool, localStorage.getItem("token"))
+    .quitPool(localStorage.getItem("login"), JSON.stringify(this.pool.idbetpool), localStorage.getItem("token"))
     .subscribe(  x  => { 
+                          console.log(x);
                           if(x['status'] == 'KO' ){
 
                             console.log("Bet fail : " +x['errorMessage'])
