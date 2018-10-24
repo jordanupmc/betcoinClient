@@ -18,7 +18,7 @@ export class AuthService {
     return this.http.post(apiURL+"connect", { login : login , password : pass });
   }
 
-  public logout(login, token) {
-    return this.http.get(apiURL+"disconnect?token="+token+"&login="+login);
+  public logout(login : string, token : string){
+    return this.http.post(apiURL+"disconnect", { login : login, token : token});
   }
 }
