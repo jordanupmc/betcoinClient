@@ -28,21 +28,21 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit() {
-    const fieldName = ["password", "last_name", "first_name", "email", "country"];
+    const fieldName = ['password', 'last_name', 'first_name', 'email', 'country'];
     if (this.editUserForm.value.passwordNew === this.editUserForm.value.passwordConf) {
-      this.result = '';
       const newValue: string[] = [this.editUserForm.value.passwordNew, this.editUserForm.value.lastname,
         this.editUserForm.value.firstname, this.editUserForm.value.email, this.editUserForm.value.country];
       let i = 0;
       let test = 0;
       for (i = 0; i < 5; i++) {
-        if (newValue[i] !== '' ) {
+        if (newValue[i].length !== 0 ) {
+          this.result = i;
           test = 1;
         }
       }
       if (test === 1) {
         this.userservice.editUser(localStorage.getItem("login"), localStorage.getItem("token"),
-          this.editUserForm.value.passwordCur, fieldName, newValue)
+          this.editUserForm.value.passwordCur, JSON.stringify(fieldName), JSON.stringify(newValue))
           .subscribe(x => {
               if ( x['status'] === 'KO') {
                 this.result = x['errorMessage'];

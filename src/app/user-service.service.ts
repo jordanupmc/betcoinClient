@@ -26,7 +26,7 @@ export class UserService {
     return this.http.post(apiURL+"disconnect", { login : login, token : token});
   }
 
-  public editUser(login : string, token : string, password : string, fieldName : string[], newValue : string[]){
+  public editUser(login : string, token : string, password : string, fieldName : string, newValue : string){
     return this.http.post(apiURL+"changeAccountInfo",{login : login, password : password, fieldName : fieldName, newValue : newValue, token : token});
   }
 
