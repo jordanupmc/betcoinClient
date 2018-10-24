@@ -53,7 +53,6 @@ export class EditUserComponent implements OnInit {
           );
       }
     } else {
-      console.log("test")
       this.editUserForm.value.passwordconf = 'password doesn\'t match';
     }
   }
