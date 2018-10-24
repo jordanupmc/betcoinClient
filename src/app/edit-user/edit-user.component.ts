@@ -13,11 +13,21 @@ export class EditUserComponent implements OnInit {
   constructor(private userservice : UserService) { }
   urlImg;
   editUserForm = new FormGroup({
-    password: new FormControl('')
+    passwordcur: new FormControl(''),
+    passwordnew: new FormControl(''),
+    passwordconf: new FormControl(''),
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    country: new FormControl('')
   });
   
   ngOnInit() {
     this.urlImg= this.userservice.getIconUrl(localStorage.getItem("email"))
+  }
+
+  onSubmit(){
+
   }
 
   

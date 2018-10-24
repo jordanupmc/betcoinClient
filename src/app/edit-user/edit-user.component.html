@@ -3,24 +3,25 @@
 
   <div class="form-group">
     <label for="inputPasswordCur">Current password</label>
-    <input formControlName="password" type="password" class="form-control" id="inputPasswordCur" placeholder="Current Password" required>
+    <input formControlName="passwordCur" type="password" class="form-control" id="inputPasswordCur" placeholder="Current Password" >
     <label for="inputPasswordNew">New password</label>
-    <input formControlName="password" type="password" class="form-control" id="inputPasswordNew" placeholder="New Password" required>
+    <input formControlName="passwordNew" type="password" class="form-control" id="inputPasswordNew" placeholder="New Password" >
     <label for="inputPasswordNewConf">Confirm new password</label>
-    <input formControlName="password" type="password" class="form-control" id="inputPasswordNewConf" placeholder="Confirm Password" required>
+    <input formControlName="passwordConf" type="password" class="form-control" id="inputPasswordNewConf" placeholder="Confirm Password" >
+    <label for="firstName">First name</label>
+    <input formControlName="firstname" type="text" class="form-control" id="firstName" placeholder="First name" >
+    <label for="lastName">Last name</label>
+    <input formControlName="lastname" type="text" class="form-control" id="lastName" placeholder="Last name" >
+    <label for="email">Email</label>
+    <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email" >
+    <label for="country">Country</label>
+    <select name="Country" id="country">
+      <option value="FR">France</option>
+      <option value="GER">Germany</option>
+      <option value="US">United States</option>
+      <option value="UK">United Kingdom</option>
+    </select>
   </div>
-  <label for="firstName">First name</label>
-  <input formControlName="firstname" type="text" class="form-control" id="firstName" placeholder="First name" required>
-  <label for="lastName">Last name</label>
-  <input formControlName="lastname" type="text" class="form-control" id="lastName" placeholder="Last name" required>
-  <label for="email">Email</label>
-  <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email" required>
-  <label for="country">Country</label>
-  <select name="Country" id="country">
-    <option value="FR">France</option>
-    <option value="GER">Germany</option>
-    <option value="US">United States</option>
-    <option value="UK">United Kingdom</option>
-  </select>
+
   <button [disabled]="!editUserForm.valid" type="submit" class="btn btn-primary">Submit</button>
 </form>
