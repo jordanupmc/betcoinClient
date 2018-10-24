@@ -10,6 +10,7 @@ import { ListPoolComponent } from './list-pool/list-pool.component';
 
 import { BetPoolDetailComponent }  from './bet-pool-detail/bet-pool-detail.component';
 import { PriceChartComponent } from './price-chart/price-chart.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'listPool', component: ListPoolComponent},
   { path: 'unsubscribe', component: UnsubscribeComponent},
   { path: 'poolDetail/:id', component: BetPoolDetailComponent},
-  { path: 'chart', component: PriceChartComponent}
+  { path: 'chart', component: PriceChartComponent},
+  { path: 'chat', component: ChatComponent}
 
 ];
 
