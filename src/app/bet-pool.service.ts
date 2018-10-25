@@ -36,6 +36,14 @@ export class BetPoolService {
     return this.http.post(apiURL+"messagePool", {idPool : idPool, login : login, msg : msg, token:  token});
   }
 
+  public hasBet(login, token, idPool){
+    return this.http.get(apiURL+"hasBet?idPool="+idPool+"&login="+login+"&token="+token);
+  }
+
+  public cancelBet(login, token, idPool){
+    return this.http.post(apiURL+"cancelBet", {idPool : idPool, login : login, token:  token});
+    }
+
   private mock_messages = {
     "messages": [
       {
