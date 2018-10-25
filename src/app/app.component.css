@@ -1,0 +1,73 @@
+nav{
+  text-align: center;
+  padding-top:30px;
+}
+nav a{
+  color: #ffffff;
+}
+nav a:hover{
+  font-weight: bold;
+  text-decoration: none;
+}
+header{
+  top:0px;
+  text-align:center;
+  height: 70px;
+  right:0px;
+  left:0px;
+  position:fixed;
+  display:inline-flex;
+  padding: 5px;
+  z-index:500;
+  background-color: #127dff;
+}
+header h1{
+  padding-top: 7px;
+}
+#sidebar{
+  position:fixed;
+  height:inherit;
+  width: 200px;
+  background-color: #91b8ff;
+}
+#logo{
+  width: 60px;
+}
+#app-body{
+  margin-left:200px;
+  padding:15px;
+}
+#routeur{
+  width: fit-content;
+  position:relative;
+  left: 40%;
+  top:40%;
+}
+#main{
+  margin-top: 70px;
+  height:calc(100vh - 55px);
+  width:100%;
+}
+#log-div{
+  display: inline-flex;
+  right: 20px;
+  padding-top:13px;
+  position: absolute;
+}
+#log-div a{
+  color: #ffffff;
+}
+#log-div a:hover{
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+#log-div p{
+  color: #ffffff;
+}
+#in-out{
+  position:relative;
+  padding-right: 20px;
+}
+
+
