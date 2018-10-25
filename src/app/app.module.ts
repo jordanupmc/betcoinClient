@@ -16,6 +16,7 @@ import { ListPoolComponent } from './list-pool/list-pool.component';
 import { BetPoolDetailComponent } from './bet-pool-detail/bet-pool-detail.component';
 import { PriceChartComponent } from './price-chart/price-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChartsModule } from 'ng2-charts';
     EditUserComponent,
     ListPoolComponent,
     BetPoolDetailComponent,
-    PriceChartComponent
+    PriceChartComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

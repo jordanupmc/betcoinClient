@@ -13,7 +13,7 @@ export class SubscribeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   subscribeForm = new FormGroup({
-    login: new FormControl(''),
+    login: new FormControl('', [Validators.pattern("[^' ']+") ]),
     password: new FormControl(''),
     cpassword: new FormControl(''),
     email: new FormControl(''),

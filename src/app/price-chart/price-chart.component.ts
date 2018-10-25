@@ -77,7 +77,11 @@ export class PriceChartComponent implements OnInit {
 
   public lineChartData:Array<any> = [];
   public lineChartOptions:any = {
-    responsive: true
+    responsive: true,
+    // title: {
+    //   text: "Courbe du prix de "+ this.currency + " en USD au cours des x hours " ,
+    //   display: true
+    // }
   };
 
   public lineChartColors:Array<any> = [
