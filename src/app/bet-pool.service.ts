@@ -49,4 +49,8 @@ export class BetPoolService {
   public getMessageFromId(idPool, login, token, fromMsgId){
     return this.http.get(apiURL+"getListMessage?idPool="+idPool+"&login="+login+"&token="+token+"&from="+fromMsgId);
   }
+
+  public deleteMessage(idPool, login, token, toDelete){
+      return this.http.post(apiURL+"deleteMessage", {idPool: idPool, login: login, token : token, msgId : toDelete});
+  }
 }

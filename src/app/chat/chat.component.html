@@ -25,6 +25,7 @@
                                     </div>                                
                                 </div>
                             </div>
+                            <button *ngIf="isAuthor(msg)" type="button" class="btn btn-danger btn-sm" (onclick)="delete(msg)"><i class="fa fa-trash"></i >Delete</button>
 						</td>
 					</tr>
 				</table>

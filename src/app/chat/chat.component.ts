@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.urlImg = this.userservice.getIconUrl(localStorage.getItem("email"));
     this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
-                    .subscribe(res=>{ this.messages = res["messages"]; console.log(this.messages) });
+                    .subscribe(res=>{ this.messages = res["messages"]; });
   }
 
   updateMessages(funcSuccess, funcErr){
@@ -35,6 +35,12 @@ export class ChatComponent implements OnInit {
   clearInput(){
     this.textInput.reset();
   }
+
+  isAuthor(msg){
+    return msg.gamblerLogin == localStorage.getItem("login");
+  }
+
+
   sendMessage(){
     if(!this.textInput.valid || (this.textInput.value).trim() == '' )
       return;
@@ -65,6 +71,23 @@ export class ChatComponent implements OnInit {
 
                       }
                     );
+  }
+
+  delete(msg){
+    this.poolservice.deleteMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"), msg['_msgId']['$oid'])
+                    .subscribe(
+                      res => {
+                        if(res["status"] == "OK"){
+                            let index = this.messages.indexOf(msg);
+                            if(index < 0 )
+                              return;
+                            this.messages.splice(index, 1);
+                        }
+                      },
+                      e=>{
+                          console.log(e)
+                      });
+
   }
 
 }
