@@ -74,6 +74,7 @@ export class ChatComponent implements OnInit {
   }
 
   delete(msg){
+    console.log("OUAIS JE RENTRE")
     this.poolservice.deleteMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"), msg['_msgId']['$oid'])
                     .subscribe(
                       res => {
