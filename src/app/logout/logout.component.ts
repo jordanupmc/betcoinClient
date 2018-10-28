@@ -33,6 +33,8 @@ export class LogoutComponent implements OnInit {
                             this.result = "Logout success";
                             localStorage.removeItem("token");
                             localStorage.removeItem("login");
+                            document.getElementById('out-ed').style.display = 'none';
+                            document.getElementById('in-sub').style.display = 'inline-flex';
                           }
                         }
                       )
