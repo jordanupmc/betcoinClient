@@ -18,6 +18,7 @@ export class ListPoolComponent implements OnInit {
     );
   }
 
+  // Add imgUrl property to betPool Object
   private addImgUrl( pools ){
     for(let pool of pools){
       switch (pool['cryptocurrency']){
