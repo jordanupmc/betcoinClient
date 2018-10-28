@@ -25,6 +25,7 @@ header h1{
   padding-top: 7px;
   color:white;
 }
+
 #sidebar{
   position:fixed;
   height:inherit;
@@ -32,6 +33,7 @@ header h1{
   background-color: #150568;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  z-index: 500;
 }
 #logo{
   width: 60px;
@@ -44,6 +46,11 @@ header h1{
   width: fit-content;
   position:relative;
   left: 40%;
+  margin-left:200px;
+  padding:15px;
+}
+#routeur{
+  width: fit-content;
 }
 #main{
   margin-top: 70px;
@@ -75,15 +82,16 @@ header h1{
   position:relative;
   padding:20px;
 }
-#opening{
-  position:absolute;
+#opening {
+  position: absolute;
   height: 30px;
   width: 30px;
   background-color: #150568;
-  left:200px;
-  top:0px;
+  left: 200px;
+  top: 0px;
   border-radius: 0 0 10px 0;
   z-index: 1000;
 }
+
 
 
