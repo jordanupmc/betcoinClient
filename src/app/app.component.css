@@ -19,28 +19,41 @@ header{
   display:inline-flex;
   padding: 5px;
   z-index:500;
-  background-color: #127dff;
+  background-color: #020f45;
 }
 header h1{
   padding-top: 7px;
+  color:white;
+  font-size: 3vw;
 }
+
 #sidebar{
   position:fixed;
   height:inherit;
   width: 200px;
-  background-color: #91b8ff;
+  background-color: #0a0656;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
   z-index: 500;
 }
 #logo{
   width: 60px;
 }
 #app-body{
-  margin-left:200px;
+  padding:15px;
+  height:fit-content;
+}
+#routeur{
+  width: fit-content;
+  position:relative;
+  margin-left: auto;
+  margin-right: auto;
   padding:15px;
 }
 #routeur{
   width: fit-content;
 }
+
 #main{
   margin-top: 70px;
   height:calc(100vh - 55px);
@@ -63,9 +76,33 @@ header h1{
 #log-div p{
   color: #ffffff;
 }
-#in-out{
+#in-sub a{
   position:relative;
-  padding-right: 20px;
+  padding-left:20px;
+}
+#out-ed a{
+  position:relative;
+  padding-left:20px;
+}
+#opening {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background-color: #0a0656;
+  left: 200px;
+  top: 0px;
+  border-radius: 0 0 10px 0;
+  z-index: 1000;
+}
+#opening img{
+  padding:5px;
+  height: 30px;
+  width: 30px;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg) ;
+  -ms-transform: rotate(180deg) ;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 
