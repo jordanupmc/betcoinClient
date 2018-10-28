@@ -17,6 +17,7 @@ import { BetPoolDetailComponent } from './bet-pool-detail/bet-pool-detail.compon
 import { PriceChartComponent } from './price-chart/price-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { ChatComponent } from './chat/chat.component';
+import { BetsComponent } from './bets/bets.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ChatComponent } from './chat/chat.component';
     ListPoolComponent,
     BetPoolDetailComponent,
     PriceChartComponent,
-    ChatComponent
+    ChatComponent,
+    BetsComponent
   ],
   imports: [
     BrowserModule,
