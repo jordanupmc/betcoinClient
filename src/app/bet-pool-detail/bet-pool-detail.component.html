@@ -1,4 +1,4 @@
-{{haveDoneBet}}
+{{result}}
 <div class="card-body">
   <h5 class="card-title">{{pool?.name}}</h5>
   <h5 class="card-title">Id : {{pool?.idbetpool}}</h5>
@@ -6,10 +6,10 @@
   <p class="card-text">Close at {{pool?.closingbet}}</p>
 </div>
 
-<button (click)="quitPool()" class="btn btn-primary" routerLink="/listPool">Unfollow Pool</button>
+<button (click)="quitPool()" class="btn btn-primary" >Unfollow Pool</button>
 <br>
 
-<div *ngIf="haveDoneBet === 'false'"> 
+<div *ngIf="!haveDoneBet"> 
   <button (click)="show = !show" class="btn btn-primary">{{show ? 'Cancel current bet' : 'Start a bet'}}</button>
   <br>
   <div *ngIf="show">
@@ -29,7 +29,10 @@
   </div>
 </div>
 
-<div *ngIf="haveDoneBet === 'true'">
-  <button (click)="cancelBet()" class="btn btn-primary" routerLink="/listPool">Cancel Bet</button>
+<div *ngIf="haveDoneBet">
+  <button (click)="cancelBet();show = false" class="btn btn-primary">Cancel Bet</button>
+</div>
 
+<div *ngIf="resultIsAvailable">
+  <button (click)="retrieve()" class="btn btn-primary">See Result </button>
 </div>

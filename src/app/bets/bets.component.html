@@ -1,0 +1,13 @@
+{{result}}
+<div *ngFor="let bet of myBets" class="card border-light mb-3" style="max-width: 18rem;" >>
+	<div class="card-body">
+	  <h5 class="card-title" routerLink="/poolDetail/{{bet.idBetPool}}">Pool n°:{{bet.idBetPool}}</h5>
+	  <p class="card-text">Amount bet : {{bet.betAmount}}</p>
+    <p class="card-text">Pronostic {{bet.betValue}}</p>
+		<p class="card-text">Bet done the {{bet.betDate}}</p>
+		<div *ngIf="bet.resultAvailable">
+			<button (click)="retrieve(bet)" class="btn btn-primary">See Result </button>
+		</div>
+
+	</div>
+</div>
