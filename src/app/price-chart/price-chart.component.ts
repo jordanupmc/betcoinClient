@@ -33,7 +33,7 @@ export class PriceChartComponent implements OnInit {
   public fillChart(hour : number){
     this.lineChartData = [];
     this.lineChartLabels=[];
-    this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime() /1000) , Math.floor(Date.now() /1000))
+    this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime() ) , Math.floor(Date.now() ))
   }
 
 

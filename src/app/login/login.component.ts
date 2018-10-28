@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
                             this.result = x['errorMessage'];
                           }
                           else{
-                            this.result = "WELCOME "+ this.authForm.value.login+" your token is: "+x['token'];
+                            // this.result = "WELCOME "+ this.authForm.value.login+" your token is: "+x['token'];
                             localStorage.setItem("token", x['token'])
                             localStorage.setItem("login", this.authForm.value.login)
                           }
