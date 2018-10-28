@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import { UserProfile } from '../userProfile';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscribe',
@@ -10,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SubscribeComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router : Router) { }
 
   subscribeForm = new FormGroup({
     login: new FormControl('', [Validators.pattern("[^' ']+") ]),
@@ -38,7 +39,7 @@ export class SubscribeComponent implements OnInit {
             this.tmp = x['errorMessage'];
           } 
           else {
-            this.tmp = 'Success ^^';
+            this.router.navigate(['/login']);
           }
         }, 
  e  => console.log(e));
