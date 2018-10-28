@@ -16,6 +16,7 @@ canvas {
 
 #chart {
   display: inline-block;
+  text-align: center;
 }
 
 #form_affich {
@@ -25,4 +26,10 @@ canvas {
 
 #form_affich form{
   display: inline-flex;
+}
+
+#button_affich{
+  margin-left: 20px;
+  height: 30px;
+  padding:3px;
 }

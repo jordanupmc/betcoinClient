@@ -37,4 +37,7 @@ export class UserService {
     return gravatarURL+"avatar/"+ md5(email.trim().toLowerCase()).toLowerCase();
   }
 
+  public infoUser(login: string, token: string) {
+    return this.http.get(apiURL + 'getAccountInfo?login=' + login + '&token=' + token );
+  }
 }
