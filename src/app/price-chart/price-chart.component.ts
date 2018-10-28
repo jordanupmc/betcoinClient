@@ -13,8 +13,9 @@ export class PriceChartComponent implements OnInit {
 
   constructor(private cryptoservice : CryptoCompareService) { this.currency = 'ETH'}
   
+  hourBefore = 3;
   ngOnInit() {
-    this.fillChart(3);
+    this.fillChart(this.hourBefore);
   }
   
 
@@ -33,7 +34,7 @@ export class PriceChartComponent implements OnInit {
   public fillChart(hour : number){
     this.lineChartData = [];
     this.lineChartLabels=[];
-    this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime() ) , Math.floor(Date.now() ))
+    this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime()/1000 ) , Math.floor(Date.now()/1000 ))
   }
 
 
@@ -41,14 +42,22 @@ export class PriceChartComponent implements OnInit {
     this.cryptoservice.getPriceBetweenInterval(this.currency, from, to)
     .subscribe(
       res => {
+        
         this.lineChartData = [];
-        this.lineChartLabels=[];
+        this.lineChartLabels= [];
+        let tmpLabels = [];
         let tmpArray : Array<number>= [];
+
         for(let obj of res['results'][0]['Data']){
           tmpArray.push(obj['close']);
-          this.lineChartLabels.push(this.tsToDate(obj['time']));
+          tmpLabels.push(this.tsToDate(obj['time']));
         }
+
+        setTimeout(() =>{          
+        this.lineChartLabels= tmpLabels;
         this.lineChartData.push({data: tmpArray, label: this.currency})
+    }, 0);
+
       },
       err => {
         console.log("getPriceBetweenInterval "+err)
@@ -56,16 +65,17 @@ export class PriceChartComponent implements OnInit {
     );
   }
   changeInterval(){
-    let from = (new Date (this.intervalForm.value.fromDate+" "+this.intervalForm.value.fromTime).getTime()) / 1000;
-    let to = (new Date (this.intervalForm.value.toDate+" "+this.intervalForm.value.toTime).getTime()) / 1000;
+    let from = Math.floor((new Date (this.intervalForm.value.fromDate+" "+this.intervalForm.value.fromTime).getTime()) / 1000);
+    let to = Math.floor((new Date (this.intervalForm.value.toDate+" "+this.intervalForm.value.toTime).getTime()) / 1000);
     let now = Math.floor(Date.now() /1000);
+    
     if(to > now)
       to = now;
     if(from > now)
       from = now;
 
     if( from == to )
-      from = Math.floor(new Date(Date.now() - (1000*60*60*3) ).getTime() /1000);
+      from = Math.floor(new Date(Date.now() - (1000*60*60*this.hourBefore) ).getTime() /1000);
 
     if(from > to)
       this.getPriceBetweenInterval(to, from);
