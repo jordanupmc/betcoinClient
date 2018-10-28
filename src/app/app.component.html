@@ -4,12 +4,12 @@
     Welcome to {{ title }} !
   </h1>
   <div id="log-div">
-    <div id="in-out">
+    <div id="in-sub">
       <a routerLink="/login">Login</a>
-      <a routerLink="/logout">Logout</a>
-    </div>
-    <div id="sub-ed">
       <a routerLink="/subscribe">Subscribe</a>
+    </div>
+    <div id="out-ed" style="display: none">
+      <a routerLink="/logout">Logout</a>
       <a routerLink="/editUser">Edit user</a>
     </div>
   </div>
@@ -21,6 +21,8 @@
       <br>
       <a routerLink="/chart">Static Chart</a>
     </nav>
+    <div id="opening" (click)="moveSide()">
+    </div>
   </div>
   <div id="app-body">
     <div id="routeur">
