@@ -24,6 +24,7 @@ header{
 header h1{
   padding-top: 7px;
   color:white;
+  font-size: 3vw;
 }
 
 #sidebar{
@@ -51,8 +52,8 @@ header h1{
 }
 #routeur{
   width: fit-content;
-
 }
+
 #main{
   margin-top: 70px;
   height:calc(100vh - 55px);
