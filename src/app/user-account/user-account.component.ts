@@ -8,20 +8,28 @@ import {stringify} from 'querystring';
   styleUrls: ['./user-account.component.css']
 })
 export class UserAccountComponent implements OnInit {
+  result;
 
-  constructor(private userservice: UserService) { }
+  constructor(private userservice: UserService) {
+  }
 
   ngOnInit() {
-    const dataAccount = this.userservice.infoUser(localStorage.getItem('login'), localStorage.getItem('token'));
-    const jsonData = JSON.parse(dataAccount.toString());
-    document.getElementById('login_account').innerHTML = jsonData.login.value ;
-    document.getElementById('fname_account').innerText = jsonData.first_name.value ;
-    document.getElementById('lname_account').innerText = jsonData.last_name.value ;
-    document.getElementById('birthday_account').innerText = jsonData.birthday.value ;
-    document.getElementById('country_account').innerText = jsonData.country.value ;
-    document.getElementById('email_account').innerText = jsonData.email.value ;
+    this.userservice.infoUser(localStorage.getItem('login'), localStorage.getItem('token'))
+      .subscribe(  x  => {
+        if ( x['status'] === 'KO' ) {
+          this.result = x['errorMessage'];
+        } else {
+          document.getElementById('login_account').innerText = x['login'] ;
+          document.getElementById('fname_account').innerText = x['first_name'] ;
+          document.getElementById('lname_account').innerText = x['last_name'] ;
+          document.getElementById('birthday_account').innerText = x['birthday'] ;
+          document.getElementById('country_account').innerText = x['country'] ;
+          document.getElementById('email_account').innerText = x['email'] ;
+        }
 
-
+      },
+      e  => console.log(e)
+    );
   }
 
 }
