@@ -14,6 +14,9 @@ export class PriceChartComponent implements OnInit {
   constructor(private cryptoservice : CryptoCompareService) { this.currency = 'ETH'}
   
   hourBefore = 3;
+  isLoading=true;
+  msgErr="";
+
   ngOnInit() {
     this.fillChart(this.hourBefore);
   }
@@ -39,10 +42,20 @@ export class PriceChartComponent implements OnInit {
 
 
   private getPriceBetweenInterval(from: number, to: number){
+    this.isLoading=true;
     this.cryptoservice.getPriceBetweenInterval(this.currency, from, to)
     .subscribe(
       res => {
-        
+        if(res["status"]=="KO"){
+          this.msgErr = res["msgErr"];
+          return;
+        }
+        if(res['results'][0]['Response'] == "Error"){
+          this.msgErr = res['results'][0]['Message']
+          return;
+        }
+        this.msgErr="";
+        this.isLoading=false;
         this.lineChartData = [];
         this.lineChartLabels= [];
         let tmpLabels = [];
@@ -60,6 +73,8 @@ export class PriceChartComponent implements OnInit {
 
       },
       err => {
+        this.isLoading=false;
+        this.msgErr=err;
         console.log("getPriceBetweenInterval "+err)
       }
     );

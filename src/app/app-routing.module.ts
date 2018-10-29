@@ -8,12 +8,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ListPoolComponent } from './list-pool/list-pool.component';
 
-import { BetPoolDetailComponent }  from './bet-pool-detail/bet-pool-detail.component';
+import { BetPoolDetailComponent } from './bet-pool-detail/bet-pool-detail.component';
 import { PriceChartComponent } from './price-chart/price-chart.component';
 import { ChatComponent } from './chat/chat.component';
 import { BetsComponent } from './bets/bets.component';
 import {UserAccountComponent} from './user-account/user-account.component';
-
 
 
 
@@ -29,9 +28,7 @@ const routes: Routes = [
   { path: 'chart', component: PriceChartComponent},
   { path: 'chat', component: ChatComponent},
   { path: 'bets', component: BetsComponent},
-  { path: 'userAccount', component: UserAccountComponent}
-
-
+  { path: 'account', component: UserAccountComponent}
 ];
 
 

@@ -1,5 +1,4 @@
 <div class="chatContainer">
-
     <div class="chatTitleContainer">Comments</div>
 	<div class="chatHistoryContainer">
 
@@ -7,7 +6,7 @@
 			<li *ngFor="let msg of messages" class="commentLi commentstep-1" data-commentid="4">
 				<table class="form-comments-table">
 					<tr>
-						<td><div class="comment-timestamp">{{msg.messageDate.$date}}</div></td>
+						<td><div class="comment-timestamp">{{msg.messageDate.$date | date:'medium'}}</div></td>
 						<td><div class="comment-user">{{msg.gamblerLogin}}</div></td>
 						<td>
 							<div class="comment-avatar">
@@ -34,7 +33,6 @@
 	</div>
     
     <div class="input-group input-group-sm chatMessageControls">
-        <span class="input-group-addon" id="sizing-addon3">Comment</span>
         <input type="text" class="form-control" placeholder="Type your message here.." aria-describedby="sizing-addon3"  [formControl]="textInput">    
         <span class="input-group-btn">
             <button id="clearMessageButton" class="btn btn-default" type="button" (click)="clearInput()">Clear</button>

@@ -13,7 +13,7 @@ export class ChatComponent implements OnInit {
   @Input() idPool : string;
   textInput = new FormControl('', [Validators.required]);
   
-  constructor(private poolservice: BetPoolService, private userservice: UserService) { this.idPool = "1"}
+  constructor(private poolservice: BetPoolService, private userservice: UserService) { }
 
   urlImg;
   messages : any[];
@@ -74,7 +74,6 @@ export class ChatComponent implements OnInit {
   }
 
   delete(msg){
-    console.log("OUAIS JE RENTRE")
     this.poolservice.deleteMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"), msg['_msgId']['$oid'])
                     .subscribe(
                       res => {
