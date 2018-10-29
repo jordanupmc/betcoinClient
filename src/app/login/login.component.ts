@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice : AuthService) { }
+  constructor(private authservice : AuthService, private routeur : Router) { }
 
   authForm = new FormGroup({
     login: new FormControl(''),
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
                             localStorage.setItem("login", this.authForm.value.login)
                             document.getElementById('in-sub').style.display = 'none';
                             document.getElementById('out-ed').style.display = 'block';
+                            this.routeur.navigate(['chart']);
                           }
 
                         }, 
