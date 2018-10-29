@@ -36,3 +36,4 @@
 <div *ngIf="resultIsAvailable">
   <button (click)="retrieve()" class="btn btn-primary">See Result </button>
 </div>
+<app-chat *ngIf="pool.idbetpool" [idPool]="pool?.idbetpool"></app-chat>

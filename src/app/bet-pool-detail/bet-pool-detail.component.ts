@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 import { BetPoolService } from '../bet-pool.service';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({  
   selector: 'app-bet-pool-detail',
@@ -22,6 +23,8 @@ export class BetPoolDetailComponent implements OnInit {
       private router: Router
      ) { }
 
+  @ViewChild(ChatComponent)
+  private chatComponent : ChatComponent;
 
   pool;
   haveDoneBet : boolean = false;

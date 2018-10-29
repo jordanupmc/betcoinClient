@@ -30,8 +30,8 @@ export class BetPoolService {
     return this.http.post(apiURL+"quitPool", { login : login, token : token, idPool : idPool});
   }
 
-  public sendMessage(idPool, login, msg, token){
-    return this.http.post(apiURL+"messagePool", {idPool : idPool, login : login, msg : msg, token:  token});
+  public sendMessage(idPool : string, login : string, msg: string, token){
+    return this.http.post(apiURL+"messagePool", {idPool : idPool+"", login : login, msg : msg, token:  token});
   }
 
   public hasBet(login, token, idPool){
@@ -51,7 +51,7 @@ export class BetPoolService {
   }
 
   public deleteMessage(idPool, login, token, toDelete){
-      return this.http.post(apiURL+"deleteMessage", {idPool: idPool, login: login, token : token, msgId : toDelete});
+      return this.http.post(apiURL+"deleteMessage", {idPool: idPool+"", login: login, token : token, msgId : toDelete});
   }
 
   public getListBets(login, token) {
