@@ -82,11 +82,11 @@ header h1{
 }
 #in-sub a{
   position:relative;
-  padding-left:20px;
+  margin-left:20px;
 }
 #out-ed a{
   position:relative;
-  padding-left:20px;
+  margin-left:20px;
 }
 #out-ed i{
   position:relative;

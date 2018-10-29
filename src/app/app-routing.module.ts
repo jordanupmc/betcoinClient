@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'chart', component: PriceChartComponent},
   { path: 'chat', component: ChatComponent},
   { path: 'bets', component: BetsComponent},
-  { path: 'useraccount', component: UserAccountComponent}
+  { path: 'userAccount', component: UserAccountComponent}
 
 
 ];

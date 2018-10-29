@@ -1,6 +1,6 @@
-div{
-  display:inline-flex;
+#edituser{
+  position:absolute;
 }
-.to_fill{
-  margin-left: 10px;
+#useraccount{
+  position:absolute;
 }
