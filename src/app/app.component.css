@@ -2,10 +2,10 @@ nav{
   text-align: center;
   padding-top:30px;
 }
-nav a{
+nav a, app-logout{
   color: #ffffff;
 }
-nav a:hover{
+nav a:hover, app-logout{
   font-weight: bold;
   text-decoration: none;
 }

@@ -25,11 +25,20 @@ export class ChatComponent implements OnInit {
   }
 
   updateMessages(funcSuccess, funcErr){
-    this.poolservice
-                              .getMessageFromId(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"), this.messages[this.messages.length-1]['_msgId']['$oid'])
-                              .subscribe(
-                                funcSuccess,funcErr
-                              )
+    console.log("JOJO: "+ JSON.stringify(this.messages))
+
+    //Si la liste de messages est vide on update en recuperant tout les messages
+    if(this.messages.length == 0)
+      this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
+      .subscribe( funcSuccess, funcErr)
+    else
+      //Sinon on recupere tout les messages poster apres le dernier message courant
+      this.poolservice
+                                .getMessageFromId(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"),
+                                this.messages[this.messages.length-1]['_msgId']['$oid'])
+                                .subscribe(
+                                  funcSuccess,funcErr
+                                )
   }
 
   clearInput(){

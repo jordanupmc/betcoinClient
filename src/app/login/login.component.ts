@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  result;
+  urlImg;
 
   constructor(private authservice : AuthService, private routeur : Router) { }
 
@@ -16,14 +18,10 @@ export class LoginComponent implements OnInit {
     login: new FormControl(''),
     password: new FormControl('')
   });
-  
-  result;
-  urlImg;
-
+ 
   ngOnInit() {
   }
 
-  
   onSubmit(){
 
     this.authservice
@@ -33,16 +31,16 @@ export class LoginComponent implements OnInit {
                             this.result = x['errorMessage'];
                           }
                           else{
-                            // this.result = "WELCOME "+ this.authForm.value.login+" your token is: "+x['token'];
+                            localStorage.clear();
                             localStorage.setItem("token", x['token'])
                             localStorage.setItem("login", this.authForm.value.login)
                             document.getElementById('in-sub').style.display = 'none';
                             document.getElementById('out-ed').style.display = 'block';
-                            this.routeur.navigate(['chart']);
+                            this.routeur.navigate(['listPool']);
                           }
 
                         }, 
-                 e  => console.log(e)
+                 e  => this.result=e
     );
   }
 

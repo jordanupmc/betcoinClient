@@ -40,4 +40,7 @@ export class UserService {
   public infoUser(login: string, token: string) {
     return this.http.get(apiURL + 'getAccountInfo?login=' + login + '&token=' + token );
   }
+  public getCountriesName(){
+    return this.http.get("https://restcountries.eu/rest/v2/all?fields=name");
+  }
 }
