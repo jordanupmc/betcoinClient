@@ -19,13 +19,24 @@
         <label for="ammountInput">Ammount to bet</label>
         <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Enter ammount"required>
       </div>
-      <div class="form-group">
-        <label for="betValueInput">Bet value</label>
-        <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Enter the bet value" required>
+      <div *ngIf="pooltype">
+          <div>Montant Exact</div>
+        <div class="form-group">
+          <label for="betValueInput">Bet value</label>
+          <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Enter the bet value" required>
+        </div>
       </div>
+      <div *ngIf="!pooltype">
+        <div>Variation</div>
+        <div class="form-group">
+            <select *ngIf="variation" class="form-control" formControlName="betValue" id="betValueInput" required>
+                <option *ngFor="let vari of variation" [value]="vari.value">{{vari.titre}}</option>
+            </select>
+        </div>
+      </div>
+
       <button [disabled]="!betForm.valid" type="submit" class="btn btn-primary">Bet !</button>
     </form>
-
   </div>
 </div>
 
