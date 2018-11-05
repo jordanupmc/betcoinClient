@@ -31,5 +31,4 @@ export class UserAccountComponent implements OnInit {
       e  => console.log(e)
     );
   }
-
 }
