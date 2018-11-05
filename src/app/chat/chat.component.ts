@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit {
 
   urlImg;
   messages : any[];
-
+  loading=false;
   ngOnInit() {
     this.urlImg = this.userservice.getIconUrl(localStorage.getItem("email"));
     this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
@@ -25,8 +25,6 @@ export class ChatComponent implements OnInit {
   }
 
   updateMessages(funcSuccess, funcErr){
-    console.log("JOJO: "+ JSON.stringify(this.messages))
-
     //Si la liste de messages est vide on update en recuperant tout les messages
     if(this.messages.length == 0)
       this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
@@ -56,9 +54,11 @@ export class ChatComponent implements OnInit {
     let currentValue =this.textInput.value;
     this.textInput.reset();
 
+    this.loading=true;
     this.poolservice.sendMessage(this.idPool, localStorage.getItem("login"), currentValue, localStorage.getItem("token"))
                     .subscribe(
                       res => {
+                          this.loading=false;
                           // On met a jour la vue en faisant une requete au serveur pour récup le message envoyé + les eventuels messages recu entre temps
                           if(res["status"] == "OK"){
                             this.updateMessages( res => {
@@ -77,7 +77,7 @@ export class ChatComponent implements OnInit {
                           }
                       },
                       err =>{
-
+                        this.loading=false;
                       }
                     );
   }
