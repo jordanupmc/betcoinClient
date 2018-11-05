@@ -23,8 +23,20 @@ export class EditUserComponent implements OnInit {
 
   result;
   urlImg;
+  countries;
 
   ngOnInit() {
+    document.getElementById("avatar").setAttribute('src',this.userservice.getIconUrl(localStorage.getItem("email")));
+    this.userservice.getCountriesName().subscribe(
+      res => {
+        this.countries=res;
+        console.log(this.countries)
+      }
+      ,
+      err => {
+        this.countries= [{name:"France"}]
+      }
+    );
   }
 
   onSubmit() {

@@ -5,7 +5,7 @@ nav{
 nav a, app-logout{
   color: #ffffff;
 }
-nav a:hover, app-logout{
+nav a:hover, app-logout:hover{
   font-weight: bold;
   text-decoration: none;
 }
@@ -30,8 +30,11 @@ header h1{
 #logo{
   position:absolute;
   top:0px;
+  left:45vw;
   width:120px;
   height:80px;
+  outline-style:none;
+  cursor:pointer;
 }
 #sidebar{
   position:fixed;
@@ -93,11 +96,11 @@ header h1{
   right:-50px;
   color: white;
 }
-header i{
+#panel{
   position:relative;
   color: white;
   padding:13px;
-  left:140px;
+  left:15px;
 }
 
 

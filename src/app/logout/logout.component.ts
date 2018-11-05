@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { AuthService } from '../auth.service';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  styleUrls: ['./logout.component.css'],
+  host: { '(click)': 'onClick()'}
 })
 export class LogoutComponent implements OnInit {
 
@@ -34,9 +35,7 @@ export class LogoutComponent implements OnInit {
                             this.result = "Logout success";
                             localStorage.removeItem("token");
                             localStorage.removeItem("login");
-                            document.getElementById('out-ed').style.display = 'none';
-                            document.getElementById('in-sub').style.display = 'inline-flex';
-                            this.routeur.navigate(['chart']);
+                            this.routeur.navigate(['login']);
                           }
                         }
                       )

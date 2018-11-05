@@ -1,5 +1,9 @@
 <h2>{{result}}</h2>
 <img [src]="urlImg" *ngIf="urlImg" />
+<div id="'avat-div">
+  <img id="avatar" alt="avatar" src=""/>
+  <a href="https://fr.gravatar.com/">To change your gravatar, check out their website</a>
+</div>
 <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="inputPasswordCur">Current password</label>
@@ -26,21 +30,18 @@
     <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email" >
   </div>
   <div class="form-group">
-    <label for="country">Country</label>
-    <input formControlName="country" type="text" class="form-control" id="country" placeholder="Country" >
-  </div>
-  <div id="avatar">
-    <img src="//placehold.it/150" alt="avatar">
-    <h6>Upload a different photo</h6>
-    <label>
-      <input type="file" id="file">
-      <span>Choose file</span>
-    </label>
+    <label for="countrySubscribe">Country</label>
+    <select *ngIf="countries" class="form-control" formControlName="country" id="countrySubscribe" required>
+      <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+    </select>
   </div>
 
+
+
   <button type="submit" class="btn btn-primary">Submit</button>
-  <br>
+
   <a id="unsub" routerLink="/unsubscribe">Unsubscribe</a>
   <br>
 
 </form>
+

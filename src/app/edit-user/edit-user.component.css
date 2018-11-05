@@ -1,9 +1,12 @@
 #unsub{
   margin-left: 15px;
+  padding-top: 20px;
 }
-
-#avatar{
-  position:relative;
-
-
+*{
+  align-items: center;
+  text-align: center;
+}
+#avat-div{
+  position:absolute;
+  top:0px;
 }

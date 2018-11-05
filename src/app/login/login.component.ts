@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
                             localStorage.clear();
                             localStorage.setItem("token", x['token'])
                             localStorage.setItem("login", this.authForm.value.login)
-                            document.getElementById('in-sub').style.display = 'none';
-                            document.getElementById('out-ed').style.display = 'block';
+
                             this.routeur.navigate(['listPool']);
                           }
 

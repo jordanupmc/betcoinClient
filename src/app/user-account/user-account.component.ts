@@ -25,6 +25,8 @@ export class UserAccountComponent implements OnInit {
           document.getElementById('birthday_account').innerText = x['birthday'] ;
           document.getElementById('country_account').innerText = x['country'] ;
           document.getElementById('email_account').innerText = x['email'] ;
+          localStorage.setItem("email",x['email']);
+          document.getElementById('avatar').setAttribute('src', this.userservice.getIconUrl(x['email']));
         }
 
       },

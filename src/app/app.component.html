@@ -1,13 +1,14 @@
 <header>
-  <img  alt="Betcoin Logo" id="logo" [src]="logoURL">
-  <i class="fas fa-align-justify fa-2x" (click)="moveSide()"></i>
+  <img  alt="Betcoin Logo" id="logo" [src]="logoURL" routerLink="/chart">
+  <i id="panel" class="fas fa-align-justify fa-2x" (click)="moveSide()"></i>
   <div id="log-div">
     <div id="in-sub" *ngIf="!authguard.isConnected">
       <a routerLink="/login">Login</a>
       <a routerLink="/subscribe">Subscribe</a>
     </div>
     <div id="out-ed" *ngIf="authguard.isConnected">
-      <app-logout></app-logout>
+      <app-logout style="cursor:pointer"></app-logout>
+
       <a routerLink="/account">User account</a>
     </div>
   </div>
@@ -23,6 +24,11 @@
       <div>
         <i class="fas fa-chart-line" style="padding-right: 20px; color: white;"></i>
         <a routerLink="/chart">Static Chart</a>
+      </div>
+      <br>
+      <div>
+        <i class="fas fa-archive" style="padding-right: 20px; color: white;"></i>
+        <a routerLink="/bets">My Bets</a>
       </div>
     </nav>
   </div>
