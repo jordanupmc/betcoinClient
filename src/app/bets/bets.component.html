@@ -1,5 +1,5 @@
 {{result}}
-<div *ngFor="let bet of myBets" class="card border-light mb-3" style="max-width: 18rem;" >>
+<!-- <div *ngFor="let bet of myBets" class="card border-light mb-3" style="max-width: 18rem;" >>
 	<div class="card-body">
 	  <h5 class="card-title" routerLink="/poolDetail/{{bet.idBetPool}}">Pool n°:{{bet.idBetPool}}</h5>
 	  <p class="card-text">Amount bet : {{bet.betAmount}}</p>
@@ -9,5 +9,19 @@
 			<button (click)="retrieve(bet)" class="btn btn-primary">See Result </button>
 		</div>
 
+	</div>
+</div> -->
+
+<i *ngIf="!myBets.length" class="fas fa-spin fa-circle-notch"></i>
+<div class="row">
+	<div *ngFor="let bet of myBets" routerLink="/poolDetail/{{bet.idBetPool}}" style="cursor: pointer;">
+			<div class="card">
+					<div class="box">
+							<h5 class="card-title">Id : {{bet.idBetPool}}</h5>
+							<p class="card-text">Amount bet : {{bet.betAmount}}€</p>
+							<p class="card-text">Pronostic : {{bet.betValue}}€</p>
+							<p class="card-text">Bet done the {{bet.betDate}}</p>
+					</div>
+				</div>
 	</div>
 </div>

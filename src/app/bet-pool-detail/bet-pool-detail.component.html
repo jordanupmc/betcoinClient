@@ -1,18 +1,29 @@
-{{result}}
-<div class="card-body">
+<!-- <div class="card-body">
   <h5 class="card-title">{{pool?.name}}</h5>
   <h5 class="card-title">Id : {{pool?.idbetpool}}</h5>
   <p class="card-text">Open at {{pool?.openingbet}}</p>
   <p class="card-text">Close at {{pool?.closingbet}}</p>
-</div>
+</div> -->
 
-<button (click)="quitPool()" class="btn btn-primary" >Unfollow Pool</button>
+<div class="card">
+    <div class="box">
+        <div class="img">
+            <img [src]="pool.imgUrl"/>
+        </div>
+        <h2>{{pool.name}}<br>
+        <span><i *ngIf="pool.pooltype" class="fas fa-money-bill"> Juste prix</i>
+        <i *ngIf="!pool.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
+        <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
+        <p class="card-text">Open at {{pool.openingbet}}</p>
+        <p class="card-text">Close at {{pool.closingbet}}</p>
+    </div>
+  </div>
+  {{result}}
+<button (click)="quitPool()" class="btn btn-primary btn-lg" >Unfollow Pool</button>
 <br>
 
 <div *ngIf="!haveDoneBet"> 
-  <button (click)="show = !show" class="btn btn-primary">{{show ? 'Cancel current bet' : 'Start a bet'}}</button>
-  <br>
-  <div *ngIf="show">
+
 
     <form [formGroup]="betForm" (ngSubmit)="bet()">
       <div class="form-group">
@@ -20,14 +31,12 @@
         <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Enter ammount"required>
       </div>
       <div *ngIf="pooltype">
-          <div>Montant Exact</div>
         <div class="form-group">
           <label for="betValueInput">Bet value</label>
           <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Enter the bet value" required>
         </div>
       </div>
       <div *ngIf="!pooltype">
-        <div>Variation</div>
         <div class="form-group">
             <select *ngIf="variation" class="form-control" formControlName="betValue" id="betValueInput" required>
                 <option *ngFor="let vari of variation" [value]="vari.value">{{vari.titre}}</option>
@@ -35,16 +44,16 @@
         </div>
       </div>
 
-      <button [disabled]="!betForm.valid" type="submit" class="btn btn-primary">Bet !</button>
+      <button [disabled]="!betForm.valid" type="submit" class="btn btn-primary btn-lg">Bet !</button>
     </form>
-  </div>
+  
 </div>
 
 <div *ngIf="haveDoneBet">
-  <button (click)="cancelBet();show = false" class="btn btn-primary">Cancel Bet</button>
+  <button (click)="cancelBet();show = false" class="btn btn-primary btn-lg">Cancel Bet</button>
 </div>
 
 <div *ngIf="resultIsAvailable">
-  <button (click)="retrieve()" class="btn btn-primary">See Result </button>
+  <button (click)="retrieve()" class="btn btn-primary btn-lg">See Result </button>
 </div>
 <app-chat *ngIf="pool.idbetpool" [idPool]="pool?.idbetpool"></app-chat>
