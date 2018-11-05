@@ -29,6 +29,8 @@ export class BetPoolDetailComponent implements OnInit {
   pool;
   haveDoneBet : boolean = false;
   resultIsAvailable : boolean = false;
+  pooltype : boolean;
+  variation = [{titre:"Increase", value:1}, {titre:"Decrease", value:-1}]
   result = "";
   betForm = new FormGroup({
     ammount: new FormControl(''),
@@ -47,7 +49,7 @@ export class BetPoolDetailComponent implements OnInit {
 
     return new Promise( (resolve,reject) => {
       const id = +this.route.snapshot.paramMap.get('id');
-      this.betPoolService.getPool(id).subscribe(pool => {this.pool = pool ; console.log("getPool "+JSON.stringify(pool));resolve(pool) });
+      this.betPoolService.getPool(id).subscribe(pool => {this.pool = pool ; this.pooltype = this.pool.pooltype ;console.log("getPool "+JSON.stringify(pool));resolve(pool) });
     })
    
   }
