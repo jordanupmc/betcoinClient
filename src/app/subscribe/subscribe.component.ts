@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import { UserProfile } from '../userProfile';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,36 +13,75 @@ export class SubscribeComponent implements OnInit {
 
   constructor(private userService: UserService, private router : Router) { }
 
+  // return null si le password et le confirmpassword sont les meme
+  checkPasswords: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+      let pass = group.controls.password.value;
+      let confirmPass = group.controls.cpassword.value;
+      return pass === confirmPass ? null : { notSame: true } 
+  }
+
+  // return null si la date de naissance est < a la date d'aujourd'hui
+  dateMax(date: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+  
+    let bday =control.value ;
+    let today= new Date().toISOString().split('T')[0];
+    return bday < today ? null : { isYoung: true } 
+    }
+  }
+
   subscribeForm = new FormGroup({
     login: new FormControl('', [Validators.pattern("[^' ']+") ]),
-    password: new FormControl(''),
-    cpassword: new FormControl(''),
+    passwords : new FormGroup({
+      password: new FormControl(''),
+      cpassword: new FormControl(''),
+    }, {validators: this.checkPasswords}),
     email: new FormControl(''),
-    birthday: new FormControl(''),
+    birthday: new FormControl('', this.dateMax("")),
     country: new FormControl(''),
-    lname: new FormControl('', Validators.pattern('[a-zA-Z]+')),
-    fname: new FormControl('', Validators.pattern('[a-zA-Z]+'))
+    lname: new FormControl(''),
+    fname: new FormControl('')
   });
 
-  tmp;
+  error;
+  loading;
+  countries;
 
   ngOnInit() {
+    this.userService.getCountriesName().subscribe(
+      res => {
+        this.countries=res;
+        console.log(this.countries)
+      }
+      ,
+      err => {
+        this.countries= [{name:"France"}]
+      }
+    );
   }
 
   onSubmit(){
-      this.userService.subscribe(new UserProfile(this.subscribeForm.value.login, this.subscribeForm.value.password, this.subscribeForm.value.cpassword,
+      this.loading = true;
+      this.userService.subscribe(
+        new UserProfile(this.subscribeForm.value.login, this.subscribeForm.value.passwords.password, this.subscribeForm.value.passwords.cpassword,
         this.subscribeForm.value.email, this.subscribeForm.value.lname, this.subscribeForm.value.fname, 
         this.subscribeForm.value.birthday, this.subscribeForm.value.country))
         .subscribe(
           x  => { 
-          if(x['status'] == 'KO' ){
-            this.tmp = x['errorMessage'];
-          } 
-          else {
-            this.router.navigate(['/login']);
+            this.loading=false;
+            if(x['status'] == 'KO' ){
+              this.error = x['errorMessage'];
+            } 
+            else {
+              this.router.navigate(['/login']);
+            }
+          }, 
+          e  => { 
+            this.loading=false; 
+            this.error = e;
           }
-        }, 
- e  => console.log(e));
+        )
   }
 
+  
 }

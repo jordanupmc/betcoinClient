@@ -12,6 +12,6 @@ export class CryptoCompareService {
 
   // TODO mettre devise = EUR
   public getPriceBetweenInterval(currency: string, debut : number, fin : number){
-    return this.http.get(apiURL+"getCryptoMin?cryptName="+currency+"&devise=USD&fin="+fin+"&debut="+debut)
+    return this.http.get(apiURL+"getCryptoMin?cryptName="+currency+"&devise=EUR&fin="+fin+"&debut="+debut)
   }
 }

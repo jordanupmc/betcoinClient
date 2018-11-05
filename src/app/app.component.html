@@ -2,12 +2,12 @@
   <img  alt="Betcoin Logo" id="logo" [src]="logoURL">
   <i class="fas fa-align-justify fa-2x" (click)="moveSide()"></i>
   <div id="log-div">
-    <div id="in-sub">
+    <div id="in-sub" *ngIf="!authguard.isConnected">
       <a routerLink="/login">Login</a>
       <a routerLink="/subscribe">Subscribe</a>
     </div>
-    <div id="out-ed" style="display: none">
-      <a routerLink="/logout">Logout</a>
+    <div id="out-ed" *ngIf="authguard.isConnected">
+      <app-logout></app-logout>
       <a routerLink="/account">User account</a>
     </div>
   </div>

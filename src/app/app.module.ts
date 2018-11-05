@@ -19,6 +19,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChatComponent } from './chat/chat.component';
 import { BetsComponent } from './bets/bets.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
     AppRoutingModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,6 +13,7 @@ import { PriceChartComponent } from './price-chart/price-chart.component';
 import { ChatComponent } from './chat/chat.component';
 import { BetsComponent } from './bets/bets.component';
 import {UserAccountComponent} from './user-account/user-account.component';
+import { AuthGuardService } from './auth-guard.service';
 
 
 
@@ -20,15 +21,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component:  LoginComponent},
   { path: 'subscribe', component: SubscribeComponent},
-  { path: 'logout', component: LogoutComponent},
-  { path: 'editUser', component: EditUserComponent},
+  { path: 'editUser', component: EditUserComponent,  canActivate: [AuthGuardService]},
   { path: 'listPool', component: ListPoolComponent},
-  { path: 'unsubscribe', component: UnsubscribeComponent},
+  { path: 'unsubscribe', component: UnsubscribeComponent,  canActivate: [AuthGuardService]},
   { path: 'poolDetail/:id', component: BetPoolDetailComponent},
   { path: 'chart', component: PriceChartComponent},
   { path: 'chat', component: ChatComponent},
   { path: 'bets', component: BetsComponent},
-  { path: 'account', component: UserAccountComponent}
+  { path: 'account', component: UserAccountComponent,  canActivate: [AuthGuardService]}
 ];
 
 

@@ -1,35 +1,81 @@
-<h1>Subscribe</h1>
-<h3>{{tmp}}</h3>
+<h1>Inscription</h1>
+
+<div *ngIf="error"
+    class="alert alert-danger">
+    <h3>{{error}}</h3>
+</div>
 <form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="loginSubscribe">Login</label>
-    <input formControlName="login" type="text" class="form-control" id="loginSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
+    <input formControlName="login" type="text" [ngClass]="{
+      'is-invalid': subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty, 
+      'is-valid': subscribeForm.controls.login.valid && subscribeForm.controls.login.dirty 
+    }" class="form-control" id="loginSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
+    <div class="invalid-feedback" *ngIf="(subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty)">
+      Le login ne doit pas contenir d'espace
+    </div>
   </div>
-  <div class="form-group">
-    <label for="passwordSubscribe">Password</label>
-    <input formControlName="password" type="password" class="form-control" id="passwordSubscribe" placeholder="Password" required>
-  </div>
-  <div class="form-group">
-    <label for="cpasswordSubscribe">Confirm password</label>
-    <input formControlName="cpassword" type="password" class="form-control" id="cpasswordSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
+  <div formGroupName="passwords">
+    <div class="form-group">
+      <label for="passwordSubscribe">Password</label>
+      <input formControlName="password" type="password" [ngClass]="{
+        'is-invalid': subscribeForm.controls.passwords.controls.password.invalid && subscribeForm.controls.passwords.controls.password.dirty, 
+        'is-valid': subscribeForm.controls.passwords.controls.password.valid && subscribeForm.controls.passwords.controls.password.dirty 
+      }"
+      class="form-control" id="passwordSubscribe" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+      <label for="cpasswordSubscribe">Confirm password</label>
+      <input formControlName="cpassword" type="password" [ngClass]="{
+        'is-invalid': (subscribeForm.controls.passwords.invalid && subscribeForm.controls.passwords.controls.cpassword.dirty), 
+        'is-valid': subscribeForm.controls.passwords.valid && subscribeForm.controls.passwords.controls.cpassword.dirty 
+        }" class="form-control" id="cpasswordSubscribe" aria-describedby="ConfirmPassHelp" placeholder="Confirm Password">
+    </div>
+    <div class="invalid-feedback" *ngIf="(subscribeForm.controls.passwords.invalid && subscribeForm.controls.passwords.controls.cpassword.dirty)">
+      Le mot de passe de confirmation ne correspond pas
+    </div>
   </div>
   <div class="form-group">
     <label for="emailSubscribe">Email</label>
-    <input formControlName="email" type="email" class="form-control" id="emailSubscribe" placeholder="Email" [email]="true" required>
-  </div><div class="form-group">
+    <input  formControlName="email" type="email" [ngClass]="{
+      'is-invalid': subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty, 
+      'is-valid': subscribeForm.controls.email.valid && subscribeForm.controls.email.dirty 
+    }"
+     class="form-control" id="emailSubscribe" placeholder="Email" [email]="true" required>
+     <div class="invalid-feedback" *ngIf="(subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty)">
+        Entrez un email valide 
+    </div>
+  </div>
+  <div class="form-group">
     <label for="lastNameSubscribe">Last name</label>
-    <input formControlName="lname" type="text" class="form-control" id="lastNameSubscribe" aria-describedby="loginHelp" placeholder="Last name"required>
+    <input formControlName="lname" type="text" [ngClass]="{
+      'is-invalid': subscribeForm.controls.lname.invalid && subscribeForm.controls.lname.dirty, 
+      'is-valid': subscribeForm.controls.lname.valid && subscribeForm.controls.lname.dirty 
+    }" class="form-control" id="lastNameSubscribe" aria-describedby="loginHelp" placeholder="Last name"required>
   </div>
   <div class="form-group">
     <label for="firstNameSubscribe">First name</label>
-    <input formControlName="fname" type="text" class="form-control" id="firstNameSubscribe" placeholder="First name" required>
+    <input formControlName="fname" type="text"  [ngClass]="{
+      'is-invalid': subscribeForm.controls.fname.invalid && subscribeForm.controls.fname.dirty, 
+      'is-valid': subscribeForm.controls.fname.valid && subscribeForm.controls.fname.dirty 
+    }" class="form-control" id="firstNameSubscribe" placeholder="First name" required>
   </div><div class="form-group">
     <label for="birthdaySubscribe">Birthday</label>
-    <input formControlName="birthday" type="date" class="form-control" id="birthdaySubscribe" aria-describedby="loginHelp" placeholder="Birthday"required>
+    <input formControlName="birthday" type="date" class="form-control"  [ngClass]="{
+      'is-invalid': subscribeForm.controls.birthday.invalid && subscribeForm.controls.birthday.dirty, 
+      'is-valid': subscribeForm.controls.birthday.valid && subscribeForm.controls.birthday.dirty 
+    }" id="birthdaySubscribe" aria-describedby="BirthDay" placeholder="Birthday"required>
+    <div class="invalid-feedback" *ngIf="(subscribeForm.controls.birthday.invalid && subscribeForm.controls.birthday.dirty)">
+      Veuillez êtes vraiment trop jeunes pour rejoindre Betcoin 
+   </div>
   </div>
   <div class="form-group">
     <label for="countrySubscribe">Country</label>
-    <input formControlName="country" type="text" class="form-control" id="countrySubscribe" placeholder="Country" required>
+    <select *ngIf="countries" class="form-control" formControlName="country" id="countrySubscribe" required>
+        <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+    </select>
+    <!-- <input formControlName="country" type="text" class="form-control" id="countrySubscribe" placeholder="Country" required> -->
   </div>
-  <button [disabled]="!subscribeForm.valid" type="submit" class="btn btn-primary">Subscribe</button>
+  
+  <button [disabled]="!subscribeForm.valid" type="submit" class="btn btn-primary">Subscribe <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
 </form>
