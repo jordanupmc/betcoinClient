@@ -33,8 +33,7 @@ export class LogoutComponent implements OnInit {
                           }
                           else{
                             this.result = "Logout success";
-                            localStorage.removeItem("token");
-                            localStorage.removeItem("login");
+                            localStorage.clear();
                             this.routeur.navigate(['login']);
                           }
                         }

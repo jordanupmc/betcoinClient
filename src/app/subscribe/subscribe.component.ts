@@ -36,7 +36,7 @@ export class SubscribeComponent implements OnInit {
       password: new FormControl(''),
       cpassword: new FormControl(''),
     }, {validators: this.checkPasswords}),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$")),
     birthday: new FormControl('', this.dateMax("")),
     country: new FormControl(''),
     lname: new FormControl(''),

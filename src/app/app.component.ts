@@ -9,6 +9,7 @@ import { AuthGuardService } from './auth-guard.service';
 export class AppComponent {
   title = 'betcoinclient';
   logoURL = './assets/img/betcoin_logo.png';
+  
   constructor(private authguard : AuthGuardService) { }
 
   moveSide() {

@@ -37,11 +37,11 @@
   </div>
   <div class="form-group">
     <label for="emailSubscribe">Email</label>
-    <input  formControlName="email" type="email" [ngClass]="{
+    <input  formControlName="email" type="text" [ngClass]="{
       'is-invalid': subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty, 
       'is-valid': subscribeForm.controls.email.valid && subscribeForm.controls.email.dirty 
     }"
-     class="form-control" id="emailSubscribe" placeholder="Email" [email]="true" required>
+     class="form-control" id="emailSubscribe" placeholder="Email"  required>
      <div class="invalid-feedback" *ngIf="(subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty)">
         Entrez un email valide 
     </div>
