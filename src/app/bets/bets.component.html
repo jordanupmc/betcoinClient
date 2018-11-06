@@ -12,7 +12,10 @@
 	</div>
 </div> -->
 
-<i *ngIf="!myBets.length" class="fas fa-spin fa-circle-notch"></i>
+
+<h1>Liste de mes paris</h1>
+
+<i *ngIf="!myBets" class="fas fa-spin fa-circle-notch"></i>
 <div class="row">
 	<div *ngFor="let bet of myBets" routerLink="/poolDetail/{{bet.idBetPool}}" style="cursor: pointer;">
 			<div class="card">
@@ -25,3 +28,4 @@
 				</div>
 	</div>
 </div>
+<h1 *ngIf="!myBets.length">Aucun pari fait</h1>
