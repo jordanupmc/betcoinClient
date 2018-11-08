@@ -21,6 +21,7 @@ import { BetsComponent } from './bets/bets.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AuthGuardService } from './auth-guard.service';
 import { DecodeURIPipe } from './decodeURI.pipe';
+import { BetPoolPipe } from './bet-pool.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DecodeURIPipe } from './decodeURI.pipe';
     ChatComponent,
     BetsComponent,
     UserAccountComponent,
-    DecodeURIPipe
+    DecodeURIPipe,
+    BetPoolPipe
   ],
   imports: [
     BrowserModule,

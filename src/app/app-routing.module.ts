@@ -23,10 +23,10 @@ const routes: Routes = [
   { path: 'editUser', component: EditUserComponent,  canActivate: [AuthGuardService]},
   { path: 'listPool', component: ListPoolComponent},
   { path: 'unsubscribe', component: UnsubscribeComponent,  canActivate: [AuthGuardService]},
-  { path: 'poolDetail/:id', component: BetPoolDetailComponent},
+  { path: 'poolDetail/:id', component: BetPoolDetailComponent, canActivate: [AuthGuardService]},
   { path: 'chart', component: PriceChartComponent},
   { path: 'chat', component: ChatComponent},
-  { path: 'bets', component: BetsComponent},
+  { path: 'bets', component: BetsComponent, canActivate: [AuthGuardService]},
   { path: 'account', component: UserAccountComponent,  canActivate: [AuthGuardService]}
 ];
 

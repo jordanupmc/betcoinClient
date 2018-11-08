@@ -69,7 +69,8 @@
     
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    
+    background-color: #c33c54;
+    color:#f9ebe0;
 }
 
 .fa {
@@ -161,17 +162,6 @@
 	
 }
 
-.form-comments-table tr:nth-child(1) td:nth-child(5) {
-    
-	
-}
-
-.comment-step-controls {
-	
-	
-	
-}
-
 .comment-avatar {
 	
 	margin-left: 10px;
@@ -194,12 +184,6 @@
 
 	margin-right: 10px;
 	color: #aeaeae;
-	
-}
-
-
-.comment-step1:hover {
-	
 	
 }
 
@@ -232,10 +216,5 @@
     padding-top: 8px;
     margin-top: 8px;
     display: none;
-    
-}
-
-.commentTD {
-
     
 }
