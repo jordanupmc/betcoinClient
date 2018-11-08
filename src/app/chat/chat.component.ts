@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { BetPoolService } from '../bet-pool.service';
 import { UserService } from '../user-service.service';
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -26,7 +27,7 @@ export class ChatComponent implements OnInit {
 
   updateMessages(funcSuccess, funcErr){
     //Si la liste de messages est vide on update en recuperant tout les messages
-    if(this.messages.length == 0)
+    if( !Array.isArray(this.messages) || !this.messages.length )
       this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
       .subscribe( funcSuccess, funcErr)
     else
@@ -55,7 +56,7 @@ export class ChatComponent implements OnInit {
     this.textInput.reset();
 
     this.loading=true;
-    this.poolservice.sendMessage(this.idPool, localStorage.getItem("login"), currentValue, localStorage.getItem("token"))
+    this.poolservice.sendMessage(this.idPool, localStorage.getItem("login"), encodeURIComponent(currentValue), localStorage.getItem("token"))
                     .subscribe(
                       res => {
                           this.loading=false;
