@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BetPoolService } from '../bet-pool.service';
+import { PriceChartComponent } from '../price-chart/price-chart.component';
 
 @Component({
   selector: 'app-list-pool',
@@ -14,6 +15,9 @@ export class ListPoolComponent implements OnInit {
   jpModel = true;
   variationModel=true;
 
+  @ViewChild(PriceChartComponent)
+  private pricechart : PriceChartComponent;
+  
   ngOnInit() {
     this.betpool.getPools().subscribe(
       res => {this.activePools= this.addImgUrl(res['betpools']); console.log(this.activePools)}
@@ -37,10 +41,6 @@ export class ListPoolComponent implements OnInit {
       }
     }
     return pools;
-  }
-
-  debug(log){
-    console.log("BRO "+log)
   }
 
   enterPool(pool){

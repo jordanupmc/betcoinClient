@@ -1,14 +1,20 @@
+<div class="container">
+	<div class="row">
+		<app-price-chart style="float: none;margin: 0 auto;" [enableChangeInterval]="false" [enableSelectCurrency]="true" currency="BTC"></app-price-chart>
+	</div>
+</div>
+
 <h1>Liste des paris actifs</h1>
 
 <h3>Show</h3>
 <div class="form-check">
-	<input class="form-check-input" type="checkbox" value="" id="jp" (change)="debug('jp')" [(ngModel)]="jpModel">
+	<input class="form-check-input" type="checkbox" value="" id="jp"  [(ngModel)]="jpModel">
 	<label class="form-check-label" for="jp">
 	  Juste prix
 	</label>
   </div>
   <div class="form-check">
-	<input class="form-check-input" type="checkbox" value="" id="Variation" (change)="debug('variation')" [(ngModel)]="variationModel">
+	<input class="form-check-input" type="checkbox" value="" id="Variation"  [(ngModel)]="variationModel">
 	<label class="form-check-label" for="Variation">
 	  Variation
 	</label>

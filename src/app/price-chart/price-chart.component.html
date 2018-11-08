@@ -16,15 +16,22 @@
             [chartType]="lineChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
-    <div id="form_affich">
+    <div *ngIf="enableSelectCurrency" class="form-group">
+        <label for="currencySelect">Change crypto-currency</label>
+        <select *ngIf="currency" class="form-control" id="currencySelect" [value]="currency" [(ngModel)]="currency">
+            <option *ngFor="let curr of currencyList" (click)="updateCurrency(curr.val)" [value]="curr.val" >{{curr.name}}</option>
+        </select>
+    </div>
+
+    <div *ngIf="enableChangeInterval" id="form_affich">
       <p>Afficher un intervalle</p>
       <form [formGroup]="intervalForm" (ngSubmit)="changeInterval()">
-        <p>Depuis</p>
+        <p>Depuis </p>
         <div class="form-group">
           <input formControlName="fromDate" type="date" required>
           <input formControlName="fromTime" type="time" required>
         </div>
-        <p style="padding-left: 50px">Jusqu'à</p>
+        <p style="padding-left: 50px">Jusqu'à </p>
         <div class="form-group">
           <input formControlName="toDate" type="date" required>
           <input formControlName="toTime" type="time" required>
