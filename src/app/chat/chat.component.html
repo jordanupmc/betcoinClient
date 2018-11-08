@@ -15,14 +15,7 @@
 						</td>
 						<td>
 							<div id="comment-4" data-commentid="4" class="comment comment-step1">
-                                {{msg.text | decodeURIPipe}}
-                                <div id="commentactions-4" class="comment-actions">
-                                    <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
-                                    </div>                                
-                                </div>
+                                <span style="white-space: pre-line">{{msg.text | decodeURIPipe}}</span>
                             </div>
                             <button *ngIf="isAuthor(msg)" type="button" class="btn btn-danger btn-sm" (click)="delete(msg)">Delete</button>
 						</td>
@@ -37,7 +30,7 @@
         <input type="text" class="form-control" placeholder="Entrez un message.." aria-describedby="sizing-addon3"  [formControl]="textInput">    
         <span class="input-group-btn">
             <button id="clearMessageButton" class="btn btn-default" type="button" (click)="clearInput()">Clear</button>
-            <button id="sendMessageButton" class="btn btn-primary" type="submit" (click)="sendMessage()" ><i class="fa fa-send"></i>Send</button>
+            <button id="sendMessageButton" class="btn" type="submit" (click)="sendMessage()" ><i class="fa fa-send"></i>Send</button>
         </span>
     </form>
 </div>

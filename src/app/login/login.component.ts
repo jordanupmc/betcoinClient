@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +11,9 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   result;
   urlImg;
+  isRedirect=false;
 
-  constructor(private authservice : AuthService, private routeur : Router) { }
+  constructor(private authservice : AuthService, private routeur : Router, private route: ActivatedRoute) { }
 
   authForm = new FormGroup({
     login: new FormControl(''),
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   });
  
   ngOnInit() {
+    this.route.queryParamMap.subscribe(map => { this.isRedirect=map.has("return")})
   }
 
   onSubmit(){

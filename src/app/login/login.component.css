@@ -98,6 +98,8 @@ h2.active {
   text-align: center;
   display: inline-block;
   text-transform: uppercase;
+  background-color: #c33c54;
+  color:#f9ebe0;
   font-size: 13px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;

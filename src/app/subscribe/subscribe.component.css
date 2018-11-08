@@ -14,3 +14,8 @@ input{
 h1{
   text-align: center;
 }
+
+button[type=submit] {
+  background-color: #c33c54;
+  color:#f9ebe0;
+}

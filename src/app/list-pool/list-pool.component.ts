@@ -11,6 +11,8 @@ export class ListPoolComponent implements OnInit {
   constructor(private betpool : BetPoolService) { }
 
   activePools=[];
+  jpModel = true;
+  variationModel=true;
 
   ngOnInit() {
     this.betpool.getPools().subscribe(
@@ -37,6 +39,9 @@ export class ListPoolComponent implements OnInit {
     return pools;
   }
 
+  debug(log){
+    console.log("BRO "+log)
+  }
 
   enterPool(pool){
     console.log(localStorage.getItem("login")+" entre dans la pool "+ pool.idbetpool);

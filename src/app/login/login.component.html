@@ -1,16 +1,6 @@
-<!-- <h2>{{result}}</h2>
-<img [src]="urlImg" *ngIf="urlImg" />
-<form [formGroup]="authForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="loginInput">Login</label>
-    <input formControlName="login" type="text" class="form-control" id="loginInput" aria-describedby="loginHelp" placeholder="Enter login"required>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword">Password</label>
-    <input formControlName="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required>
-  </div>
-  <button [disabled]="!authForm.valid" type="submit" class="btn btn-primary">Login</button>
-</form> -->
+<div *ngIf="isRedirect" class="alert alert-info" role="alert">
+  Vous avez essayé d'accéder à une page nécessitant une connexion.
+</div>
 <div class="wrapper fadeInDown">
   <div id="formContent">
    
@@ -21,12 +11,12 @@
     <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
       <div class="form-group" class="fadeIn second">
        
-        <input formControlName="login" type="text" id="login" aria-describedby="loginHelp" placeholder="Enter login"required>
+        <input formControlName="login" type="text" id="login" aria-describedby="loginHelp" placeholder="Login"required>
       </div>
       <div class="form-group"  class="fadeIn third">
         <input formControlName="password" type="password" id="password" placeholder="Password" required>
       </div>
-      <button [disabled]="!authForm.valid" class="fadeIn fourth" class="btn btn-primary" type="submit" >Login</button>
+      <button [disabled]="!authForm.valid" class="fadeIn fourth" class="btn" type="submit" >Login</button>
     </form>
 
     <div id="formFooter">
