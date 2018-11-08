@@ -14,7 +14,7 @@
 .chatContainer {
     
     height: 100%;
-    width: 100%;
+    width: 60vw;
     background-color: #e4e4e4;
     padding: 20px;
     
@@ -114,7 +114,7 @@
     	
 }
 
-.form-comments-table tr:nth-child(1) td:nth-child(1) {
+.form-comments-table tr:nth-child(1) td:nth-child(3) {
 	
     font-size: 9pt;
     color: #a7a7a7;
@@ -134,7 +134,7 @@
      white-space: nowrap;
      
 }
-.form-comments-table tr:nth-child(1) td:nth-child(1) {
+.form-comments-table tr:nth-child(1) td:nth-child(3) {
     
     padding-top: 8px;
 	
@@ -149,7 +149,7 @@
 	
 }
 
-.form-comments-table tr:nth-child(1) td:nth-child(3) {
+.form-comments-table tr:nth-child(1) td:nth-child(1) {
     
     vertical-align: top;
 	

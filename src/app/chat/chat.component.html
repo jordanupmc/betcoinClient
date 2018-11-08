@@ -6,25 +6,26 @@
 			<li *ngFor="let msg of messages" class="commentLi commentstep-1" data-commentid="4">
 				<table class="form-comments-table">
 					<tr>
+                        <td>
+                            <div class="comment-avatar">
+                                <img [src]="urlImg" *ngIf="urlImg">
+                            </div>
+                        </td>
+                        <td><div class="comment-user">{{msg .gamblerLogin}}</div></td>
 						<td><div class="comment-timestamp">{{msg.messageDate.$date | date:'medium'}}</div></td>
-						<td><div class="comment-user">{{msg.gamblerLogin}}</div></td>
-						<td>
-							<div class="comment-avatar">
-								<img [src]="urlImg" *ngIf="urlImg">
-							</div>
-						</td>
+						
 						<td>
 							<div id="comment-4" data-commentid="4" class="comment comment-step1">
                                 {{msg.text | decodeURIPipe}}
                                 <div id="commentactions-4" class="comment-actions">
                                     <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
-                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Delete</button>
+                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Répondre</button>
+                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i>Editer</button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i >Supprimer</button>
                                     </div>                                
                                 </div>
                             </div>
-                            <button *ngIf="isAuthor(msg)" type="button" class="btn btn-danger btn-sm" (click)="delete(msg)">Delete</button>
+                            <button *ngIf="isAuthor(msg)" type="button" class="btn btn-danger btn-sm" (click)="delete(msg)">Supprimer</button>
 						</td>
 					</tr>
                 </table>

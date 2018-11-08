@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   urlImg;
   messages : any[];
   loading=false;
-  ngOnInit() {
+  ngOnInit() {  
     this.urlImg = this.userservice.getIconUrl(localStorage.getItem("email"));
     this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
                     .subscribe(res=>{ this.messages = res["messages"]; });

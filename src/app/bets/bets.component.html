@@ -20,10 +20,24 @@
 	<div *ngFor="let bet of myBets" routerLink="/poolDetail/{{bet.idBetPool}}" style="cursor: pointer;">
 			<div class="card">
 					<div class="box">
+							<div class="img">
+									<img [src]="bet.imgUrl"/>
+							</div>
+							<h2>{{bet.name}}<br>
+							<span><i *ngIf="bet.pooltype" class="fas fa-money-bill"> Juste prix</i>
+							<i *ngIf="!bet.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
 							<h5 class="card-title">Id : {{bet.idBetPool}}</h5>
-							<p class="card-text">Amount bet : {{bet.betAmount}}€</p>
-							<p class="card-text">Pronostic : {{bet.betValue}}€</p>
-							<p class="card-text">Bet done the {{bet.betDate}}</p>
+							<p class="card-text">Montant parié: {{bet.betAmount}} BC</p>
+							<p *ngIf="bet.pooltype" class="card-text">Pronostique: {{bet.betValue}}€</p>
+							<div *ngIf="!bet.pooltype">
+								<p *ngIf="bet.betValue == 1" class="card-text">Pronostique: Montera</p>		
+								<p *ngIf="bet.betValue == -1" class="card-text">Pronostique: Descendra</p>
+								<p></p>
+							</div>
+							<!-- <p class="card-text">Pronostique: {{bet.betValue}}€</p> -->
+							<p class="card-text">Fait le: {{bet.betDate}}</p>
+							<h5 *ngIf="bet.resultAvailable">Résultat disponible</h5>
+
 					</div>
 				</div>
 	</div>
