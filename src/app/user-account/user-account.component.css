@@ -1,12 +1,12 @@
-#edituser{
+ul{
+  width:max-content;
   position:absolute;
-}
-#useraccount{
-  position:absolute;
-}
-#avatar{
-  position:absolute;
-  top:0px;
   left:-100px;
+  top:0px;
 
 }
+
+.undline{
+  text-decoration: underline;
+}
+

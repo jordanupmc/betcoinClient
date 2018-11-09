@@ -20,6 +20,8 @@ import { ChatComponent } from './chat/chat.component';
 import { BetsComponent } from './bets/bets.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AuthGuardService } from './auth-guard.service';
+import { DecodeURIPipe } from './decodeURI.pipe';
+import { BetPoolPipe } from './bet-pool.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AuthGuardService } from './auth-guard.service';
     PriceChartComponent,
     ChatComponent,
     BetsComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    DecodeURIPipe,
+    BetPoolPipe
   ],
   imports: [
     BrowserModule,

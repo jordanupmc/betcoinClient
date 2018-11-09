@@ -23,37 +23,53 @@
 <br>
 
 <div *ngIf="!haveDoneBet"> 
+{{result}}
 
-
-    <form [formGroup]="betForm" (ngSubmit)="bet()">
-      <div class="form-group">
-        <label for="ammountInput">Ammount to bet</label>
-        <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Enter ammount"required>
+  <div class="card">
+      <div class="box">
+          <div class="img">
+              <img [src]="pool.imgUrl"/>
+          </div>
+          <h2>{{pool.name}}<br>
+          <span><i *ngIf="pool.pooltype" class="fas fa-money-bill"> Juste prix</i>
+          <i *ngIf="!pool.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
+          <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
+          <p class="card-text">Fermeture: {{pool.closingbet}}</p>
+          <p class="card-text">Résultats: {{pool.resultbet}}</p>
       </div>
-      <div *ngIf="pooltype">
+    </div>
+
+  <div *ngIf="!haveDoneBet"> 
+      <button (click)="quitPool()" class="btn btn-primary btn-lg" >Unfollow Pool</button>
+      <form [formGroup]="betForm" (ngSubmit)="bet()">
         <div class="form-group">
-          <label for="betValueInput">Bet value</label>
-          <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Enter the bet value" required>
+          <label for="ammountInput">Montant a parier</label>
+          <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Entrer un montant"required>
         </div>
-      </div>
-      <div *ngIf="!pooltype">
-        <div class="form-group">
-            <select *ngIf="variation" class="form-control" formControlName="betValue" id="betValueInput" required>
-                <option *ngFor="let vari of variation" [value]="vari.value">{{vari.titre}}</option>
-            </select>
+        <div *ngIf="pooltype">
+          <div class="form-group">
+            <label for="betValueInput">Pronostique</label>
+            <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Entrer un pronostique" required>
+          </div>
         </div>
-      </div>
-
-      <button [disabled]="!betForm.valid" type="submit" class="btn btn-primary btn-lg">Bet !</button>
-    </form>
-  
-</div>
+        <div *ngIf="!pooltype">
+          <div class="form-group">
+              <label for="betValueInput">Pronostique</label>
+              <select *ngIf="variation" class="form-control" formControlName="betValue" id="betValueInput" required>
+                  <option *ngFor="let vari of variation" [value]="vari.value">{{vari.titre}}</option>
+              </select>
+          </div>
+        </div>
+        <button [disabled]="!betForm.valid" type="submit" class="btn btn-primary btn-lg">Parier !</button>
+      </form>
+  </div>
 
 <div *ngIf="haveDoneBet">
-  <button (click)="cancelBet();show = false" class="btn btn-primary btn-lg">Cancel Bet</button>
+  <button (click)="cancelBet();show = false" class="btn btn-primary btn-lg">Annuler Pari</button>
 </div>
 
 <div *ngIf="resultIsAvailable">
-  <button (click)="retrieve()" class="btn btn-primary btn-lg">See Result </button>
+  <button (click)="retrieve()" class="btn btn-primary btn-lg">Voir Résultat</button>
 </div>
 <app-chat *ngIf="pool.idbetpool" [idPool]="pool?.idbetpool"></app-chat>
+

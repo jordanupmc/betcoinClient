@@ -1,19 +1,27 @@
-<!-- <div *ngFor="let pool of activePools" class="card border-light mb-3" style="max-width: 18rem;" (click)="enterPool(pool)" routerLink="/poolDetail/{{pool.idbetpool}}">>
-	<div class="card-header"><img [src]="pool.imgUrl"class="card-img-top" style="width: 40px"/>{{pool.cryptocurrency}}</div>
-	<div class="card-body">
-	  <h5 class="card-title">{{pool.name}}</h5>
-	  <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
-	  <p class="card-text">Open at {{pool.openingbet}}</p>
-	  <p class="card-text">Close at {{pool.closingbet}}</p>
+<div class="container">
+	<div class="row">
+		<app-price-chart style="float: none;margin: 0 auto;" [enableChangeInterval]="false" [enableSelectCurrency]="true" currency="BTC"></app-price-chart>
 	</div>
 </div>
--->
 
 <h1>Liste des paris actifs</h1>
 
+<h3>Show</h3>
+<div class="form-check">
+	<input class="form-check-input" type="checkbox" value="" id="jp"  [(ngModel)]="jpModel">
+	<label class="form-check-label" for="jp">
+	  Juste prix
+	</label>
+  </div>
+  <div class="form-check">
+	<input class="form-check-input" type="checkbox" value="" id="Variation"  [(ngModel)]="variationModel">
+	<label class="form-check-label" for="Variation">
+	  Variation
+	</label>
+  </div>
 <i *ngIf="!activePools.length" class="fas fa-spin fa-circle-notch"></i>
 <div class="row">
-	<div *ngFor="let pool of activePools" (click)="enterPool(pool)" routerLink="/poolDetail/{{pool.idbetpool}}" style="cursor: pointer;">
+	<div *ngFor="let pool of activePools | betPools :jpModel:variationModel" (click)="enterPool(pool)" routerLink="/poolDetail/{{pool.idbetpool}}" style="cursor: pointer;">
 			<div class="card">
 					<div class="box">
 							<div class="img">
@@ -23,8 +31,8 @@
 							<span><i *ngIf="pool.pooltype" class="fas fa-money-bill"> Juste prix</i>
 							<i *ngIf="!pool.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
 							<h5 class="card-title">Id : {{pool.idbetpool}}</h5>
-							<p class="card-text">Close at  {{pool.closingbet}}</p>
-              <p class="card-text">Result Day : {{pool.resultbet}}</p>
+							<p class="card-text">Fermeture: {{pool.closingbet}}</p>
+              				<p class="card-text">Résultat: {{pool.resultbet}}</p>
           </div>
 				</div>
 	</div>

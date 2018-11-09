@@ -15,7 +15,7 @@ export class BetsComponent implements OnInit {
     private router: Router
     ) { }
 
-  myBets=[];
+  myBets;
   result;
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class BetsComponent implements OnInit {
 
   getMyBets(){
     this.betpool.getListBets(localStorage.getItem("login"), localStorage.getItem("token"))
-    .subscribe(res => {this.myBets= this.fillResultAvailable(res['bets'])}
+    .subscribe(res => {this.myBets = this.fillPoolTypeAndCurrency(res['bets'])}
     );
   }
 
@@ -49,6 +49,7 @@ export class BetsComponent implements OnInit {
   }
 
   resultAvailable(bet){
+    console.log(bet);
     this.betpool
     .resultAvailable(localStorage.getItem("login"), localStorage.getItem("token"), bet.idBetPool)
     .subscribe(  x  => { 
@@ -74,5 +75,57 @@ export class BetsComponent implements OnInit {
     }
     return myBets;
   }
+
+
+  private fillPoolTypeAndCurrency(myBets){
+    for(let bet of myBets){
+      this.PoolTypeAndCurrencyAvailable(bet);
+      this.resultAvailable(bet);
+      // this.addImgUrl(bet);  
+      // console.log(bet);
+    }
+    return myBets;
+  }
+
+  PoolTypeAndCurrencyAvailable(bet){
+    this.betpool
+    .getPool(bet.idBetPool)
+    .subscribe(  x  => { 
+                          console.log(x);
+                          if(x['status'] == 'KO' ){
+                            this.result = x['errorMessage'] + bet.idBetPool;
+                            console.log("PoolTypeAndCurrencyAvailable fail : " +x['errorMessage'])
+                          }else{
+                            // console.log("PoolTypeAndCurrencyAvailable Succes "+x['result']);
+                            bet.cryptocurrency = x['cryptocurrency'];
+                            this.addImgUrl(bet, x['cryptocurrency']);
+                            bet.pooltype = x['pooltype'];
+                            bet.name = x['name'];
+                          }
+                        }, 
+                 e  => console.log(e)
+    );
+  }
+
+
+  private addImgUrl(bet, crypto ){
+    switch (crypto){
+      case "Bitcoin" : bet.imgUrl= "./assets/img/btc.png"; break;
+      case "Ethereum" : bet.imgUrl= "./assets/img/eth_logo.jpeg"; break;
+      case "XRP" : bet.imgUrl= "./assets/img/xrp.png"; break;
+      case "EthereumClassic" : bet.imgUrl= "./assets/img/etc_new.png"; break;
+      case "LiteCoin" : bet.imgUrl= "./assets/img/litecoin_logo.png"; break;
+      case "EOS" : bet.imgUrl= "./assets/img/eos_1.png"; break;
+      case "BitcoinCash" : bet.imgUrl= "./assets/img/btc_cash.png"; break;
+      case "ZCash" : bet.imgUrl= "./assets/img/zec.png"; break;
+      case "NEO" : bet.imgUrl= "./assets/img/neo.jpg"; break;
+      case "Dash" : bet.imgUrl= "./assets/img/dash.png"; break;
+    }
+  
+    return bet;
+  }
+
+
+  
 
 }

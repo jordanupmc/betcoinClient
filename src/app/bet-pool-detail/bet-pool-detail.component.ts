@@ -30,7 +30,7 @@ export class BetPoolDetailComponent implements OnInit {
   haveDoneBet : boolean = false;
   resultIsAvailable : boolean = false;
   pooltype : boolean;
-  variation = [{titre:"Increase", value:1}, {titre:"Decrease", value:-1}]
+  variation = [{titre:"Montera", value:1}, {titre:"Descendra", value:-1}]
   result = "";
   betForm = new FormGroup({
     ammount: new FormControl(''),
