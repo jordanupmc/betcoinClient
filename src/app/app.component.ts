@@ -20,4 +20,8 @@ export class AppComponent {
       divSidebar.style.left = '0px';
     }
   }
+
+  isConnected(){
+    return this.authguard.isConnected();
+  }
 }
