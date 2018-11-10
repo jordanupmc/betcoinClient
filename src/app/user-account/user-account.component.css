@@ -1,12 +1,17 @@
 ul{
   width:max-content;
   position:absolute;
-  left:-100px;
+  left:-200px;
   top:0px;
 
 }
 
 .undline{
   text-decoration: underline;
+  font-weight: bold;
 }
 
+#rightdiv{
+  position:relative;
+  left:30px;
+}

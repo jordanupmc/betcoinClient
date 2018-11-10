@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../user-service.service';
 import {stringify} from 'querystring';
+import {BetPoolService} from '../bet-pool.service';
+import {BetsComponent} from '../bets/bets.component';
 
 @Component({
   selector: 'app-user-account',
@@ -9,8 +11,8 @@ import {stringify} from 'querystring';
 })
 export class UserAccountComponent implements OnInit {
   result;
-
-  constructor(private userservice: UserService) {
+  solde;
+  constructor(private userservice: UserService, private betpool : BetPoolService) {
   }
 
   ngOnInit() {
@@ -25,8 +27,10 @@ export class UserAccountComponent implements OnInit {
           document.getElementById('birthday_account').innerText = x['birthday'] ;
           document.getElementById('country_account').innerText = x['country'] ;
           document.getElementById('email_account').innerText = x['email'] ;
-          localStorage.setItem("email",x['email']);
+          localStorage.setItem('solde' , x['solde']);
+          localStorage.setItem('email', x['email']);
           document.getElementById('avatar').setAttribute('src', this.userservice.getIconUrl(x['email']));
+
         }
 
       },

@@ -88,13 +88,16 @@ header h1{
   margin-left:20px;
 }
 #out-ed a{
-  position:relative;
   margin-left:20px;
 }
 #out-ed i{
-  position:relative;
   right:-50px;
   color: white;
+}
+#solde{
+  color: #ffffff;
+  position:fixed;
+  right:17vw;
 }
 #panel{
   position:relative;
