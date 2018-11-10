@@ -42,7 +42,7 @@ export class SubscribeComponent implements OnInit {
     lname: new FormControl(''),
     fname: new FormControl('')
   });
-
+  
   error;
   loading;
   countries;

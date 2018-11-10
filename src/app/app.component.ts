@@ -39,4 +39,7 @@ export class AppComponent implements OnInit{
     }
   }
 
+  isConnected(){
+    return this.authguard.isConnected();
+  }
 }
