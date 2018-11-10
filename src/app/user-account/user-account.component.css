@@ -4,7 +4,9 @@ ul{
 }
 #avatar{
   position: relative;
-  left:-6vw;
+  left:-7vw;
+  width:100px;
+  height:100px;
 }
 
 .undline{

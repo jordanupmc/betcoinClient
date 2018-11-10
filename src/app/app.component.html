@@ -2,7 +2,7 @@
   <img  alt="Betcoin Logo" id="logo" [src]="logoURL" routerLink="/listPool">
   <i id="panel" class="fas fa-align-justify fa-2x" (click)="moveSide()"></i>
   <div id="log-div">
-    <div id="in-sub" *ngIf="!isConnected()">
+    <div id="in-sub" *ngIf="!authguard.isConnected()">
       <a routerLink="/login">Login</a>
       <a routerLink="/subscribe">Subscribe</a>
     </div>
