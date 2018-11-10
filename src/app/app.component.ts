@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   title = 'betcoinclient';
   logoURL = './assets/img/betcoin_logo.png';
   solde;
+  result;
 
   constructor(private userservice : UserService, private authguard : AuthGuardService) { }
   moveSide() {
@@ -23,8 +24,18 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(){
-    if(localStorage.getItem('solde')!=null || localStorage.getItem('solde')!=undefined){
-      this.solde=localStorage.getItem('solde');
+    this.updateSolde();
+  }
+  public updateSolde(){
+    if(localStorage.getItem("login")!=null && localStorage.getItem("token")!=null){
+      this.userservice.infoUser(localStorage.getItem('login'), localStorage.getItem('token'))
+        .subscribe(  res  => {
+          if ( res['status'] === 'KO' ) {
+            this.result = res['errorMessage'];
+          } else {
+            this.solde = res['solde'];
+          }
+        });
     }
   }
 

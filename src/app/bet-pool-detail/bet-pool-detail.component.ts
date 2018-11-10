@@ -2,12 +2,14 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {Router } from '@angular/router';
+import {AppComponent} from '../app.component';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 import { BetPoolService } from '../bet-pool.service';
 import { ChatComponent } from '../chat/chat.component';
+import {UserService} from '../user-service.service';
 
 @Component({  
   selector: 'app-bet-pool-detail',
@@ -20,7 +22,9 @@ export class BetPoolDetailComponent implements OnInit {
       private route: ActivatedRoute,
       private betPoolService: BetPoolService,
       private location: Location,
-      private router: Router
+      private router: Router,
+      private userservice: UserService,
+      private appcomp: AppComponent
      ) { }
 
   @ViewChild(ChatComponent)
@@ -65,7 +69,11 @@ export class BetPoolDetailComponent implements OnInit {
                           }
                           else{
                             console.log("Bet Succes ");
+
                             this.hasBet();
+                            this.appcomp.updateSolde();
+
+
                           }
 
                         }, 
@@ -124,6 +132,7 @@ export class BetPoolDetailComponent implements OnInit {
                           }
                           else{
                             this.hasBet();
+                            this.appcomp.updateSolde();
                             this.router.navigate(['/listPool']);
 
                           }
@@ -143,8 +152,10 @@ export class BetPoolDetailComponent implements OnInit {
 
                           }
                           else{
-                            this.result = x['result']+x['gain'];  
+                            this.result = x['result']+x['gain'];
                             this.resultAvailable();
+                            this.appcomp.updateSolde();
+
                           }
                         }, 
                  e  => console.log(e)

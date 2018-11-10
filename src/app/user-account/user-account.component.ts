@@ -19,6 +19,7 @@ export class UserAccountComponent implements OnInit {
   country;
   birthday;
   betcount;
+  poolfol;
   constructor(private userservice: UserService, private betpool : BetPoolService) {
   }
 
@@ -38,6 +39,7 @@ export class UserAccountComponent implements OnInit {
           localStorage.setItem('email', x['email']);
           document.getElementById('avatar').setAttribute('src', this.userservice.getIconUrl(x['email']));
           this.betcount = x['bets'].length;
+          this.poolfol = x['subscribePools'].length;
         }
 
       },
