@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
-import {FormGroup, FormControl, ValidatorFn, ValidationErrors} from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 
 @Component({
@@ -11,13 +11,11 @@ import {FormGroup, FormControl, ValidatorFn, ValidationErrors} from '@angular/fo
 export class EditUserComponent implements OnInit {
 
   constructor(private userservice: UserService) { }
-
-    checkPasswords: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
-      let pass = group.controls.passwordNew.value;
-      let confirmPass = group.controls.passwordConf.value;
-      return pass === confirmPass ? null : { notSame: true };
-    }
-
+  checkPasswords: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+    let pass = group.controls.passwordNew.value;
+    let confirmPass = group.controls.passwordConf.value;
+    return pass === confirmPass ? null : { notSame: true };
+  }
   editUserForm = new FormGroup({
     passwords : new FormGroup({
       passwordCur: new FormControl(''),
@@ -26,10 +24,9 @@ export class EditUserComponent implements OnInit {
     }, {validators: this.checkPasswords}),
     firstname: new FormControl(''),
     lastname: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$")),
     country: new FormControl('')
   });
-
   result;
   urlImg;
   countries;

@@ -9,54 +9,54 @@
     <div class="form-group">
       <label for="inputPasswordCur">Current Password</label>
       <input formControlName="passwordCur" type="password" [ngClass]="{
-        'is-invalid': editUserForm.controls.passwords.controls.passwordCur.invalid && editUserForm.controls.passwords.controls.passwordCur.dirty,
-        'is-valid': editUserForm.controls.passwords.controls.passwordCur.valid && editUserForm.controls.passwords.controls.passwordCur.dirty
+        'is-invalid': editUserForm['controls'].passwords['controls'].passwordCur.invalid && editUserForm['controls'].passwords['controls'].passwordCur.dirty,
+        'is-valid': editUserForm['controls'].passwords['controls'].passwordCur.valid && editUserForm['controls'].passwords['controls'].passwordCur.dirty
       }"
              class="form-control" id="inputPasswordCur" placeholder="Current Password" required>
     </div>
     <div class="form-group">
       <label for="inputPasswordNew">New Password</label>
       <input formControlName="passwordNew" type="password" [ngClass]="{
-        'is-invalid': editUserForm.controls.passwords.controls.passwordNew.invalid && editUserForm.controls.passwords.controls.passwordNew.dirty,
-        'is-valid': editUserForm.controls.passwords.controls.passwordNew.valid && editUserForm.controls.passwords.controls.passwordNew.dirty
+        'is-invalid': editUserForm['controls'].passwords['controls'].passwordNew.invalid && editUserForm['controls'].passwords['controls'].passwordNew.dirty,
+        'is-valid': editUserForm['controls'].passwords['controls'].passwordNew.valid && editUserForm['controls'].passwords['controls'].passwordNew.dirty
       }"
              class="form-control" id="inputPasswordNew" placeholder="New Password">
     </div>
     <div class="form-group">
       <label for="inputPasswordNewConf">Confirm new password</label>
       <input formControlName="passwordConf" type="password" [ngClass]="{
-        'is-invalid': (editUserForm.controls.passwords.invalid && editUserForm.controls.passwords.controls.passwordConf.dirty),
-        'is-valid': editUserForm.controls.passwords.valid && editUserForm.controls.passwords.controls.passwordConf.dirty
+        'is-invalid': (editUserForm['controls'].passwords.invalid && editUserForm['controls'].passwords['controls'].passwordConf.dirty),
+        'is-valid': editUserForm['controls'].passwords.valid && editUserForm['controls'].passwords['controls'].passwordConf.dirty
         }" class="form-control" id="inputPasswordNewConf" aria-describedby="ConfirmPassHelp"
              placeholder="Confirm new Password">
     </div>
     <div class="invalid-feedback"
-         *ngIf="(editUserForm.controls.passwords.invalid && editUserForm.controls.passwords.controls.passwordConf.dirty)">
+         *ngIf="(editUserForm['controls'].passwords.invalid && editUserForm['controls'].passwords['controls'].passwordConf.dirty)">
       Le mot de passe de confirmation ne correspond pas
     </div>
   </div>
   <div class="form-group">
     <label for="firstName">First name</label>
     <input formControlName="firstname" type="text"  [ngClass]="{
-      'is-invalid': editUserForm.controls.firstname.invalid && editUserForm.controls.firstname.dirty,
-      'is-valid': editUserForm.controls.firstname.valid && editUserForm.controls.firstname.dirty
+      'is-invalid': editUserForm['controls'].firstname.invalid && editUserForm['controls'].firstname.dirty,
+      'is-valid': editUserForm['controls'].firstname.valid && editUserForm['controls'].firstname.dirty
     }" class="form-control" id="firstName" placeholder="First name">
   </div>
   <div class="form-group">
     <label for="lastName">Last name</label>
     <input formControlName="lastname" type="text" [ngClass]="{
-      'is-invalid': editUserForm.controls.lastname.invalid && editUserForm.controls.lastname.dirty,
-      'is-valid': editUserForm.controls.lastname.valid && editUserForm.controls.lastname.dirty
+      'is-invalid': editUserForm['controls'].lastname.invalid && editUserForm['controls'].lastname.dirty,
+      'is-valid': editUserForm['controls'].lastname.valid && editUserForm['controls'].lastname.dirty
     }" class="form-control" id="lastName"  placeholder="Last name">
   </div>
   <div class="form-group">
     <label for="email">Email</label>
     <input  formControlName="email" type="email" [ngClass]="{
-      'is-invalid': editUserForm.controls.email.invalid && editUserForm.controls.email.dirty,
-      'is-valid': editUserForm.controls.email.valid && editUserForm.controls.email.dirty
+      'is-invalid': editUserForm['controls'].email.invalid && editUserForm['controls'].email.dirty,
+      'is-valid': editUserForm['controls'].email.valid && editUserForm['controls'].email.dirty
     }"
             class="form-control" id="email" placeholder="Email" [email]="true" required>
-    <div class="invalid-feedback" *ngIf="(editUserForm.controls.email.invalid && editUserForm.controls.email.dirty)">
+    <div class="invalid-feedback" *ngIf="(editUserForm['controls'].email.invalid && editUserForm['controls'].email.dirty)">
       Entrez un email valide
     </div>
   </div>
