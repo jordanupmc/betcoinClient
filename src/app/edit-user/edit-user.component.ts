@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 
 @Component({
@@ -11,16 +11,22 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EditUserComponent implements OnInit {
 
   constructor(private userservice: UserService) { }
+  checkPasswords: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+    let pass = group.controls.passwordNew.value;
+    let confirmPass = group.controls.passwordConf.value;
+    return pass === confirmPass ? null : { notSame: true };
+  }
   editUserForm = new FormGroup({
-    passwordCur: new FormControl(''),
-    passwordNew: new FormControl(''),
-    passwordConf: new FormControl(''),
+    passwords : new FormGroup({
+      passwordCur: new FormControl(''),
+      passwordNew: new FormControl(''),
+      passwordConf: new FormControl('')
+    }, {validators: this.checkPasswords}),
     firstname: new FormControl(''),
     lastname: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$")),
     country: new FormControl('')
   });
-
   result;
   urlImg;
   countries;
@@ -41,8 +47,8 @@ export class EditUserComponent implements OnInit {
 
   onSubmit() {
     const fieldName = ['password', 'last_name', 'first_name', 'email', 'country'];
-    if (this.editUserForm.value.passwordNew === this.editUserForm.value.passwordConf) {
-      const newValue: string[] = [this.editUserForm.value.passwordNew, this.editUserForm.value.lastname,
+    if (this.editUserForm.value.passwords.passwordNew === this.editUserForm.value.passwords.passwordConf) {
+      const newValue: string[] = [this.editUserForm.value.passwords.passwordNew, this.editUserForm.value.lastname,
         this.editUserForm.value.firstname, this.editUserForm.value.email, this.editUserForm.value.country];
       let i = 0;
       let test = 0;
@@ -54,7 +60,7 @@ export class EditUserComponent implements OnInit {
       }
       if (test === 1) {
         this.userservice.editUser(localStorage.getItem("login"), localStorage.getItem("token"),
-          this.editUserForm.value.passwordCur, JSON.stringify(fieldName), JSON.stringify(newValue))
+          this.editUserForm.value.passwords.passwordCur, JSON.stringify(fieldName), JSON.stringify(newValue))
           .subscribe(x => {
               if ( x['status'] === 'KO') {
                 this.result = x['errorMessage'];

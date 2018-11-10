@@ -1,12 +1,29 @@
-#edituser{
-  position:absolute;
-}
-#useraccount{
-  position:absolute;
+ul{
+  position:relative;
+  left : -100px;
 }
 #avatar{
-  position:absolute;
-  top:0px;
-  left:-100px;
+  position: relative;
+  left:-7vw;
+  width:100px;
+  height:100px;
+}
 
+.undline{
+  color:#aeaeae;
+  font-weight: bold;
+}
+
+#rightdiv{
+  position:relative;
+  left:30px;
+}
+
+#settings{
+  margin-top: 20px;
+}
+#editbutton{
+  margin: 20px;
+  position:relative;
+  left:10vw;
 }

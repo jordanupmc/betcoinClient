@@ -4,6 +4,23 @@
   <p class="card-text">Open at {{pool?.openingbet}}</p>
   <p class="card-text">Close at {{pool?.closingbet}}</p>
 </div> -->
+<!-- 
+<div class="card">
+    <div class="box">
+        <div class="img">
+            <img [src]="pool.imgUrl"/>
+        </div>
+        <h2>{{pool.name}}<br>
+        <span><i *ngIf="pool.pooltype" class="fas fa-money-bill">Juste prix</i>
+        <i *ngIf="!pool.pooltype" class="fas fa-chart-line">Variation</i></span></h2>
+        <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
+        <p class="card-text">Open at {{pool.openingbet}}</p>
+        <p class="card-text">Close at {{pool.closingbet}}</p>
+    </div>
+  </div>
+  {{result}}
+<button (click)="quitPool()" class="btn btn-primary btn-lg" >Unfollow Pool</button> -->
+<!-- <br> -->
 
 {{result}}
 
@@ -25,18 +42,18 @@
       <button (click)="quitPool()" class="btn btn-primary btn-lg" >Unfollow Pool</button>
       <form [formGroup]="betForm" (ngSubmit)="bet()">
         <div class="form-group">
-          <label for="ammountInput">Montant a parier</label>
-          <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Entrer un montant"required>
+          <label for="ammountInput">Montant a parier en BC</label>
+          <input formControlName="ammount" type="text" class="form-control" id="ammountInput" placeholder="Entrer un montant en BC"required>
         </div>
         <div *ngIf="pooltype">
           <div class="form-group">
-            <label for="betValueInput">Pronostique</label>
-            <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Entrer un pronostique" required>
+            <label for="betValueInput">Pronostique en Euros</label>
+            <input formControlName="betValue" type="text" class="form-control" id="betValueInput" placeholder="Entrer un pronostique en Euros" required>
           </div>
         </div>
         <div *ngIf="!pooltype">
           <div class="form-group">
-              <label for="betValueInput">Pronostique</label>
+              <label for="betValueInput">Pronostique sur la variation</label>
               <select *ngIf="variation" class="form-control" formControlName="betValue" id="betValueInput" required>
                   <option *ngFor="let vari of variation" [value]="vari.value">{{vari.titre}}</option>
               </select>
@@ -46,7 +63,7 @@
       </form>
   </div>
 
-<div *ngIf="haveDoneBet">
+<div *ngIf="haveDoneBet && !resultIsAvailable">
   <button (click)="cancelBet();show = false" class="btn btn-primary btn-lg">Annuler Pari</button>
 </div>
 
