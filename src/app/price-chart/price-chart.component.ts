@@ -10,8 +10,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class PriceChartComponent implements OnInit {
 
   @Input() currency : string;
-  @Input() enableChangeInterval: boolean=false;
-  @Input() enableSelectCurrency: boolean=false;
+  @Input() enableChangeInterval: boolean=true;
+  @Input() enableSelectCurrency: boolean=true;
 
   constructor(private cryptoservice : CryptoCompareService) { 
     this.currency = 'ETH'; 
@@ -71,7 +71,8 @@ export class PriceChartComponent implements OnInit {
     .subscribe(
       res => {
         if(res["status"]=="KO"){
-          this.msgErr = res["msgErr"];
+          this.msgErr = res["errorMessage"];
+          this.isLoading=false;
           return;
         }
         if(res['results'][0]['Response'] == "Error"){
