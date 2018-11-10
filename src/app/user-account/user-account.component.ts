@@ -12,6 +12,13 @@ import {BetsComponent} from '../bets/bets.component';
 export class UserAccountComponent implements OnInit {
   result;
   solde;
+  login;
+  fname;
+  lname;
+  email;
+  country;
+  birthday;
+  betcount;
   constructor(private userservice: UserService, private betpool : BetPoolService) {
   }
 
@@ -21,16 +28,16 @@ export class UserAccountComponent implements OnInit {
         if ( x['status'] === 'KO' ) {
           this.result = x['errorMessage'];
         } else {
-          document.getElementById('login_account').innerText = x['login'] ;
-          document.getElementById('fname_account').innerText = x['first_name'] ;
-          document.getElementById('lname_account').innerText = x['last_name'] ;
-          document.getElementById('birthday_account').innerText = x['birthday'] ;
-          document.getElementById('country_account').innerText = x['country'] ;
-          document.getElementById('email_account').innerText = x['email'] ;
+          this.login = x['login'] ;
+          this.fname = x['first_name'] ;
+          this.lname = x['last_name'] ;
+          this.birthday = x['birthday'] ;
+          this.country = x['country'] ;
+          this.email = x['email'] ;
           localStorage.setItem('solde' , x['solde']);
           localStorage.setItem('email', x['email']);
           document.getElementById('avatar').setAttribute('src', this.userservice.getIconUrl(x['email']));
-
+          this.betcount = x['bets'].length;
         }
 
       },

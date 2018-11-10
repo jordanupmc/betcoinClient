@@ -9,7 +9,7 @@
       <br>
       <ul class="list-group">
         <li class="list-group-item text-muted">Activity<i class="fa fa-dashboard fa-1x"></i></li>
-        <li class="list-group-item text-right"><span class="pull-left" ><strong>Bet count</strong><br></span > <p id="resultbetcount"></p></li>
+        <li class="list-group-item text-right"><span class="pull-left" ><strong>Bet count</strong><br></span > <p >{{betcount}}</p></li>
       </ul>
 
     </div><!--/col-3-->
@@ -18,25 +18,25 @@
       <div class="row" id="usercol">
         <div class="col-xs-6">
           <div><span class="undline"><h5>Your login : </h5></span>
-            <p id="login_account"></p></div>
+            <p id="login_account">{{login}}</p></div>
 
           <div><span class="undline"><h5>Your First Name : </h5></span>
-            <p id="fname_account"></p></div>
+            <p id="fname_account">{{fname}}</p></div>
 
           <div><span class="undline"><h5>Your Last Name : </h5></span>
-            <p id="lname_account"></p></div>
+            <p id="lname_account">{{lname}}</p></div>
         </div>
 
 
         <div id="rightdiv" class="col-xs-6">
           <div><span class="undline"><h5>You Mail Address : </h5></span>
-            <p id="email_account"></p></div>
+            <p id="email_account">{{email}}</p></div>
 
           <div><span class="undline"><h5>Your Birth Date : </h5></span>
-            <p id="birthday_account"></p></div>
+            <p id="birthday_account">{{birthday}}</p></div>
 
           <div><span class="undline"><h5>Your Country : </h5></span>
-            <p id="country_account"></p></div>
+            <p id="country_account">{{country}}</p></div>
         </div>
       </div>
       <a routerLink="/editUser"><h5>Edit account</h5></a>
