@@ -9,6 +9,10 @@ nav a:hover, app-logout:hover{
   font-weight: bold;
   text-decoration: none;
 }
+app-logout{
+  position:fixed;
+  right:10vw;
+}
 header{
   top:0px;
   text-align:center;
@@ -84,16 +88,13 @@ header h1{
   color: #ffffff;
 }
 #in-sub a{
-  position:relative;
+  position:fixed;
   margin-left:20px;
 }
 #out-ed a{
   margin-left:20px;
 }
-#out-ed i{
-  right:-50px;
-  color: white;
-}
+
 #solde{
   color: #ffffff;
   position:fixed;

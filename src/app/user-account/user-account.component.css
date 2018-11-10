@@ -1,17 +1,27 @@
 ul{
-  width:max-content;
-  position:absolute;
-  left:-200px;
-  top:0px;
-
+  position:relative;
+  left : -100px;
+}
+#avatar{
+  position: relative;
+  left:-6vw;
 }
 
 .undline{
-  text-decoration: underline;
+  color:#aeaeae;
   font-weight: bold;
 }
 
 #rightdiv{
   position:relative;
   left:30px;
+}
+
+#settings{
+  margin-top: 20px;
+}
+#editbutton{
+  margin: 20px;
+  position:relative;
+  left:10vw;
 }
