@@ -15,7 +15,9 @@ export class AppComponent implements OnInit{
   result;
   myLogin;
 
-  constructor(private userservice : UserService, private authguard : AuthGuardService, private routeur : Router) { }
+  constructor(private userservice : UserService, private authguard : AuthGuardService, private routeur : Router) {
+    routeur.events.subscribe(val => {this.updateSolde(); this.myLogin = localStorage.getItem("login")});
+  }
   moveSide() {
     const divSidebar = document.getElementById('sidebar');
     if ( divSidebar.style.left === '0px' ) {
@@ -37,6 +39,7 @@ export class AppComponent implements OnInit{
           if ( res['status'] === 'KO' ) {
             this.result = res['errorMessage'];
             var redir = res['redictLogin'];
+            console.log(res);
             if(redir){
               localStorage.clear();
               window.alert("You have been disconnected\n Please log in again");
