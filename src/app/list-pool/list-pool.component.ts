@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BetPoolService } from '../bet-pool.service';
 import { PriceChartComponent } from '../price-chart/price-chart.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-pool',
@@ -9,7 +10,7 @@ import { PriceChartComponent } from '../price-chart/price-chart.component';
 })
 export class ListPoolComponent implements OnInit {
 
-  constructor(private betpool : BetPoolService) { }
+  constructor(private betpool : BetPoolService, private routeur : Router) { }
 
   activePools=[];
   jpModel = true;
@@ -51,6 +52,12 @@ export class ListPoolComponent implements OnInit {
                           console.log(x);
                           if(x['status'] == 'KO' ){
                             console.log(x['errorMessage']);
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.routeur.navigate(['login']);
+                            }
                           }
                           else{
                             console.log("Succes : Enter Pool");

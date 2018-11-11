@@ -24,7 +24,19 @@ export class BetsComponent implements OnInit {
 
   getMyBets(){
     this.betpool.getListBets(localStorage.getItem("login"), localStorage.getItem("token"))
-    .subscribe(res => {this.myBets = this.fillPoolTypeAndCurrency(res['bets'])}
+    .subscribe(res => {
+        if (res['status'] == 'KO') {
+          this.result = res['errorMessage'];
+          var redir = res['redictLogin'];
+          if (redir) {
+            localStorage.clear();
+            window.alert("You have been disconnected\n Please log in again");
+            this.router.navigate(['login']);
+          }
+        } else {
+          this.myBets = this.fillPoolTypeAndCurrency(res['bets'])
+        }
+      }
     );
   }
 
@@ -35,6 +47,12 @@ export class BetsComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
 
                           }
                           else{
@@ -51,6 +69,12 @@ export class BetsComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'] + bet.idBetPool;
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             bet.resultAvailable = x['result'];
@@ -83,6 +107,12 @@ export class BetsComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'] + bet.idBetPool;
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }else{
                             bet.cryptocurrency = x['cryptocurrency'];
                             this.addImgUrl(bet, x['cryptocurrency']);

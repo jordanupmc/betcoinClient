@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CryptoCompareService } from '../crypto-compare.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-price-chart',
@@ -13,7 +14,7 @@ export class PriceChartComponent implements OnInit {
   @Input() enableChangeInterval: boolean=true;
   @Input() enableSelectCurrency: boolean=true;
 
-  constructor(private cryptoservice : CryptoCompareService) { 
+  constructor(private cryptoservice : CryptoCompareService, private routeur : Router) {
     this.currency = 'ETH'; 
     // this.enableChangeInterval=false;
     // this.enableSelectCurrency=false;
@@ -73,6 +74,12 @@ export class PriceChartComponent implements OnInit {
         if(res["status"]=="KO"){
           this.msgErr = res["errorMessage"];
           this.isLoading=false;
+          var redir = res['redictLogin'];
+          if(redir){
+            localStorage.clear();
+            window.alert("You have been disconnected\n Please log in again");
+            this.routeur.navigate(['login']);
+          }
           return;
         }
         if(res['results'][0]['Response'] == "Error"){

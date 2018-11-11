@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { BetPoolService } from '../bet-pool.service';
 import { UserService } from '../user-service.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ChatComponent implements OnInit {
   @Input() idPool : string;
   textInput = new FormControl('', [Validators.required]);
   
-  constructor(private poolservice: BetPoolService, private userservice: UserService) { }
+  constructor(private poolservice: BetPoolService, private userservice: UserService, private routeur : Router) { }
 
   urlImg;
   messages : any[];
@@ -63,17 +64,30 @@ export class ChatComponent implements OnInit {
                           // On met a jour la vue en faisant une requete au serveur pour récup le message envoyé + les eventuels messages recu entre temps
                           if(res["status"] == "OK"){
                             this.updateMessages( res => {
-                              if(res["status"] == "OK")
-                                for(let msg of res["messages"]){
+                              if(res["status"] == "OK") {
+                                for (let msg of res["messages"]) {
                                   this.messages.push(msg);
                                 }
+                              }else{
+                                var redir = res['redictLogin'];
+                                if(redir){
+                                  localStorage.clear();
+                                  window.alert("You have been disconnected\n Please log in again");
+                                  this.routeur.navigate(['login']);
+                                }
+                              }
                           }, 
                             e => {
                                 console.log(e);
                             }
                           );
                           }else{
-                            //TODO
+                            var redir = res['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.routeur.navigate(['login']);
+                            }
                             console.log(res);
                           }
                       },

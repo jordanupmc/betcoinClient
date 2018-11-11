@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { AuthGuardService } from './auth-guard.service';
 import {UserService} from './user-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit{
   result;
   myLogin;
 
-  constructor(private userservice : UserService, private authguard : AuthGuardService) { }
+  constructor(private userservice : UserService, private authguard : AuthGuardService, private routeur : Router) { }
   moveSide() {
     const divSidebar = document.getElementById('sidebar');
     if ( divSidebar.style.left === '0px' ) {
@@ -35,6 +36,12 @@ export class AppComponent implements OnInit{
         .subscribe(  res  => {
           if ( res['status'] === 'KO' ) {
             this.result = res['errorMessage'];
+            var redir = res['redictLogin'];
+            if(redir){
+              localStorage.clear();
+              window.alert("You have been disconnected\n Please log in again");
+              this.routeur.navigate(['login']);
+            }
           } else {
             this.solde = res['solde'];
           }

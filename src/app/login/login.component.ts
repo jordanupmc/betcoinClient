@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+
                           }
                           else{
                             localStorage.clear();

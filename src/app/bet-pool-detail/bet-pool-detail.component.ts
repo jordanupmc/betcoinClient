@@ -65,6 +65,12 @@ export class BetPoolDetailComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             this.hasBet();
@@ -80,6 +86,12 @@ export class BetPoolDetailComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             this.router.navigate(['/listPool']);
@@ -95,6 +107,12 @@ export class BetPoolDetailComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             this.haveDoneBet = x['result'];
@@ -109,7 +127,12 @@ export class BetPoolDetailComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
-
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             this.hasBet();
@@ -126,6 +149,12 @@ export class BetPoolDetailComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             this.result = x['result']+x['gain'];
@@ -143,6 +172,12 @@ export class BetPoolDetailComponent implements OnInit {
     .subscribe(  x  => { 
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'];
+                            var redir = x['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.router.navigate(['login']);
+                            }
                           }
                           else{
                             this.resultIsAvailable = x['result'];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } fro
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(private userservice: UserService) { }
+  constructor(private userservice: UserService, private routeur : Router) { }
   checkPasswords: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
     let pass = group.controls.passwordNew.value;
     let confirmPass = group.controls.passwordConf.value;
@@ -64,6 +65,12 @@ export class EditUserComponent implements OnInit {
           .subscribe(x => {
               if ( x['status'] === 'KO') {
                 this.result = x['errorMessage'];
+                var redir = x['redictLogin'];
+                if(redir){
+                  localStorage.clear();
+                  window.alert("You have been disconnected\n Please log in again");
+                  this.routeur.navigate(['login']);
+                }
               } else {
                 this.result = 'Successfully set up your new account informations';
               }

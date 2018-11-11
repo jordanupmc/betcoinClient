@@ -30,6 +30,12 @@ export class LogoutComponent implements OnInit {
                         res => {
                           if(res['status'] == 'KO' ){
                             this.result = res['errorMessage'];
+                            var redir = res['redictLogin'];
+                            if(redir){
+                              localStorage.clear();
+                              window.alert("You have been disconnected\n Please log in again");
+                              this.routeur.navigate(['login']);
+                            }
                           }
                           else{
                             this.result = "Logout success";

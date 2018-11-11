@@ -3,6 +3,7 @@ import {UserService} from '../user-service.service';
 import {stringify} from 'querystring';
 import {BetPoolService} from '../bet-pool.service';
 import {BetsComponent} from '../bets/bets.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-account',
@@ -20,7 +21,7 @@ export class UserAccountComponent implements OnInit {
   birthday;
   betcount;
   poolfol;
-  constructor(private userservice: UserService, private betpool : BetPoolService) {
+  constructor(private userservice: UserService, private betpool : BetPoolService,private routeur : Router) {
   }
 
   ngOnInit() {
@@ -28,6 +29,12 @@ export class UserAccountComponent implements OnInit {
       .subscribe(  x  => {
         if ( x['status'] === 'KO' ) {
           this.result = x['errorMessage'];
+          var redir = x['redictLogin'];
+          if(redir){
+            localStorage.clear();
+            window.alert("You have been disconnected\n Please log in again");
+            this.routeur.navigate(['login']);
+          }
         } else {
           this.login = x['login'] ;
           this.fname = x['first_name'] ;

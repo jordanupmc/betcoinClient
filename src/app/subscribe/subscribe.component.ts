@@ -71,6 +71,12 @@ export class SubscribeComponent implements OnInit {
             this.loading=false;
             if(x['status'] == 'KO' ){
               this.error = x['errorMessage'];
+              var redir = x['redictLogin'];
+              if(redir){
+                localStorage.clear();
+                window.alert("You have been disconnected\n Please log in again");
+                this.router.navigate(['login']);
+              }
             } 
             else {
               this.router.navigate(['/login']);
