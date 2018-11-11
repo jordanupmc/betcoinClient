@@ -1,42 +1,30 @@
-<!-- <div class="card-body">
-  <h5 class="card-title">{{pool?.name}}</h5>
-  <h5 class="card-title">Id : {{pool?.idbetpool}}</h5>
-  <p class="card-text">Open at {{pool?.openingbet}}</p>
-  <p class="card-text">Close at {{pool?.closingbet}}</p>
-</div> -->
-<!-- 
-<div class="card">
-    <div class="box">
-        <div class="img">
-            <img [src]="pool.imgUrl"/>
+<tr>
+  <td>
+    <div class="card">
+        <div class="box">
+            <div class="img">
+                <img [src]="pool?.imgUrl"/>
+            </div>
+            <h2>{{pool?.name}}<br>
+            <span><i *ngIf="pool?.pooltype" class="fas fa-money-bill"> Juste prix</i>
+            <i *ngIf="!pool?.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
+            <h5 class="card-title">Id : {{pool?.idbetpool}}</h5>
+            <p class="card-text">Fermeture: {{pool?.closingbet}}</p>
+            <p class="card-text">Résultats: {{pool?.resultbet}}</p>
         </div>
-        <h2>{{pool.name}}<br>
-        <span><i *ngIf="pool.pooltype" class="fas fa-money-bill">Juste prix</i>
-        <i *ngIf="!pool.pooltype" class="fas fa-chart-line">Variation</i></span></h2>
-        <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
-        <p class="card-text">Open at {{pool.openingbet}}</p>
-        <p class="card-text">Close at {{pool.closingbet}}</p>
-    </div>
-  </div>
-  {{result}}
-<button (click)="quitPool()" class="btn btn-primary btn-lg" >Unfollow Pool</button> -->
-<!-- <br> -->
-
-{{result}}
-
-  <div class="card">
-      <div class="box">
-          <div class="img">
-              <img [src]="pool.imgUrl"/>
-          </div>
-          <h2>{{pool.name}}<br>
-          <span><i *ngIf="pool.pooltype" class="fas fa-money-bill"> Juste prix</i>
-          <i *ngIf="!pool.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
-          <h5 class="card-title">Id : {{pool.idbetpool}}</h5>
-          <p class="card-text">Fermeture: {{pool.closingbet}}</p>
-          <p class="card-text">Résultats: {{pool.resultbet}}</p>
       </div>
-    </div>
+    </td>
+    <td>
+      <div class="container">
+        <div class="row">
+          <app-price-chart style="float: none;margin: 0 auto;" [enableChangeInterval]="false" [enableSelectCurrency]="false" currency={{pool.currency}}></app-price-chart>
+        </div>
+      </div>
+    </td>
+
+  </tr>
+
+  <h1>{{result}}</h1>
 
   <div *ngIf="!haveDoneBet"> 
       <button (click)="quitPool()" class="btn btn-primary btn-lg" >Unfollow Pool</button>
@@ -63,12 +51,12 @@
       </form>
   </div>
 
-<div *ngIf="haveDoneBet && !resultIsAvailable">
+<div *ngIf="haveDoneBet && !resultIsAvailable && !resultTaken">
   <button (click)="cancelBet();show = false" class="btn btn-primary btn-lg">Annuler Pari</button>
 </div>
 
 <div *ngIf="resultIsAvailable">
   <button (click)="retrieve()" class="btn btn-primary btn-lg">Voir Résultat</button>
 </div>
-<app-chat *ngIf="pool.idbetpool" [idPool]="pool?.idbetpool"></app-chat>
+<app-chat *ngIf="pool?.idbetpool" [idPool]="pool?.idbetpool"></app-chat>
 

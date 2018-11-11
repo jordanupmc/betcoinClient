@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   logoURL = './assets/img/betcoin_logo.png';
   solde;
   result;
+  myLogin;
 
   constructor(private userservice : UserService, private authguard : AuthGuardService) { }
   moveSide() {
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.updateSolde();
+    this.myLogin = localStorage.getItem("login");
+
   }
   public updateSolde(){
     if(localStorage.getItem("login")!=null && localStorage.getItem("token")!=null){

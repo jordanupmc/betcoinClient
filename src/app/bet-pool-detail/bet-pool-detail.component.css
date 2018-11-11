@@ -9,7 +9,15 @@
     border-radius:10px;
     transition:0.5s;
     margin-top: 200px;
+    margin-right: 100px;
+
 }
+
+
+.container {
+    transform:translateY(-45%);
+}
+
 
 .card:hover {
     box-shadow:0 30px 70px rgba(0,0,0,.2);

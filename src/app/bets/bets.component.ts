@@ -33,9 +33,7 @@ export class BetsComponent implements OnInit {
     this.betpool
     .gainRetrieval(localStorage.getItem("login"), localStorage.getItem("token"), bet.idBetPool)
     .subscribe(  x  => { 
-                          // console.log(x);
                           if(x['status'] == 'KO' ){
-                            console.log("gainRetrieval fail : " +x['errorMessage'])
                             this.result = x['errorMessage'];
 
                           }
@@ -44,7 +42,6 @@ export class BetsComponent implements OnInit {
                             bet.resultAvailable = false;
                           }
                         }, 
-                //  e  => console.log(e)
     );
   }
 
@@ -52,18 +49,14 @@ export class BetsComponent implements OnInit {
     this.betpool
     .resultAvailable(localStorage.getItem("login"), localStorage.getItem("token"), bet.idBetPool)
     .subscribe(  x  => { 
-                          // console.log(x);
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'] + bet.idBetPool;
-                            console.log("resultAvailable fail : " +x['errorMessage'])
                           }
                           else{
-                            // console.log("resultAvailable Succes "+x['result']);
                             bet.resultAvailable = x['result'];
                           }
 
                         }, 
-                //  e  => console.log(e)
     );
   }
 
@@ -80,8 +73,6 @@ export class BetsComponent implements OnInit {
     for(let bet of myBets){
       this.resultAvailable(bet);
       this.PoolTypeAndCurrencyAvailable(bet);
-      // this.addImgUrl(bet);  
-      // console.log(bet);
     }
     return myBets;
   }
@@ -90,12 +81,9 @@ export class BetsComponent implements OnInit {
     this.betpool
     .getPool(bet.idBetPool)
     .subscribe(  x  => { 
-                          // console.log(x);
                           if(x['status'] == 'KO' ){
                             this.result = x['errorMessage'] + bet.idBetPool;
-                            console.log("PoolTypeAndCurrencyAvailable fail : " +x['errorMessage'])
                           }else{
-                            // console.log("PoolTypeAndCurrencyAvailable Succes "+x['result']);
                             bet.cryptocurrency = x['cryptocurrency'];
                             this.addImgUrl(bet, x['cryptocurrency']);
                             bet.pooltype = x['pooltype'];
@@ -108,7 +96,6 @@ export class BetsComponent implements OnInit {
                             }
                           }
                         }, 
-                //  e  => console.log(e)
     );
   }
 
