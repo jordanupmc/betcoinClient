@@ -55,7 +55,7 @@
       'is-invalid': editUserForm['controls'].email.invalid && editUserForm['controls'].email.dirty,
       'is-valid': editUserForm['controls'].email.valid && editUserForm['controls'].email.dirty
     }"
-            class="form-control" id="email" placeholder="Email" [email]="true" required>
+            class="form-control" id="email" placeholder="Email" [email]="true">
     <div class="invalid-feedback" *ngIf="(editUserForm['controls'].email.invalid && editUserForm['controls'].email.dirty)">
       Entrez un email valide
     </div>
@@ -68,7 +68,7 @@
   </div>
 
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button [disabled]="!editUserForm.valid" type="submit" class="btn">Submit</button>
 
   <a id="unsub" routerLink="/unsubscribe">Unsubscribe</a>
   <br>

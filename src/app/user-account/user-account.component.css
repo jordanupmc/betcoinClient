@@ -27,3 +27,8 @@ ul{
   position:relative;
   left:10vw;
 }
+
+button{
+  background-color: #c33c54;
+  color:#f9ebe0;
+}

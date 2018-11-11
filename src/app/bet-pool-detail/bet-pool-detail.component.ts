@@ -38,8 +38,8 @@ export class BetPoolDetailComponent implements OnInit {
   variation = [{titre:"Montera", value:1}, {titre:"Descendra", value:-1}]
   result = "";
   betForm = new FormGroup({
-    ammount: new FormControl(''),
-    betValue: new FormControl('')
+    ammount: new FormControl('',Validators.pattern("[0-9]+")),
+    betValue: new FormControl('', Validators.pattern("[0-9]+"))
   });
 
   

@@ -83,3 +83,8 @@
     color:#e91e63;
     transform:rotateY(360deg);
 }
+
+button{
+    background-color: #c33c54;
+    color:#f9ebe0;
+}
