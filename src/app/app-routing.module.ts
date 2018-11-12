@@ -15,7 +15,7 @@ import { AuthGuardService } from './auth-guard.service';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/listPool', pathMatch: 'full' },
+  { path: '', redirectTo: 'listPool', pathMatch: 'full' },
   { path: 'login', component:  LoginComponent},
   { path: 'subscribe', component: SubscribeComponent},
   { path: 'editUser', component: EditUserComponent,  canActivate: [AuthGuardService]},
