@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
                             this.result = x['errorMessage'];
                           }
                           else{
+                            //Success on reset le localstorage et on ajoute le token et le login
                             localStorage.clear();
                             localStorage.setItem("token", x['token'])
                             localStorage.setItem("login", this.authForm.value.login)
