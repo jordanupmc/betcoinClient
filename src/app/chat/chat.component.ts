@@ -25,10 +25,10 @@ export class ChatComponent implements OnInit {
     this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
                     .subscribe(res=>{ 
                       this.messages = res["messages"];
+                      console.log(this.messages === undefined);
                       //si aucun message n'a ete poste res["messages"] vaut undefined il faut donc affecter une liste vide 
                       if(this.messages === undefined)
                         this.messages = [];
-                      
                      });
   }
 
@@ -81,6 +81,7 @@ export class ChatComponent implements OnInit {
                                   window.alert("You have been disconnected\n Please log in again");
                                   this.routeur.navigate(['login']);
                                 }
+                                this.messages = [];
                               }
                           }, 
                             e => {
