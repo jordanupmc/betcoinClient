@@ -19,7 +19,8 @@
 	  Variation
 	</label>
   </div>
-<i *ngIf="!activePools.length" class="fas fa-spin fa-circle-notch"></i>
+<i *ngIf="!activePools.length && !showEmptyData" class="fas fa-spin fa-circle-notch"></i>
+<span *ngIf="showEmptyData">Aucun paris disponible</span>
 <div class="row">
 	<div *ngFor="let pool of activePools | betPools :jpModel:variationModel" (click)="enterPool(pool)" routerLink="/poolDetail/{{pool.idbetpool}}" style="cursor: pointer;">
 			<div class="card">

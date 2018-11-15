@@ -15,13 +15,18 @@ export class ListPoolComponent implements OnInit {
   activePools=[];
   jpModel = true;
   variationModel=true;
+  showEmptyData=false;
 
   @ViewChild(PriceChartComponent)
   private pricechart : PriceChartComponent;
   
   ngOnInit() {
     this.betpool.getPools().subscribe(
-      res => {this.activePools= this.addImgUrl(res['betpools'])}
+      res => {
+        this.activePools= this.addImgUrl(res['betpools']);
+        if(this.activePools.length == 0)
+          this.showEmptyData = true;
+    }
     );
   }
 
