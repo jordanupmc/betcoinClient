@@ -23,7 +23,13 @@ export class ChatComponent implements OnInit {
   ngOnInit() {  
     this.urlImg = this.userservice.getIconUrl(localStorage.getItem("email"));
     this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
-                    .subscribe(res=>{ this.messages = res["messages"]; });
+                    .subscribe(res=>{ 
+                      this.messages = res["messages"];
+                      //si aucun message n'a ete poste res["messages"] vaut undefined il faut donc affecter une liste vide 
+                      if(this.messages === undefined)
+                        this.messages = [];
+                      
+                     });
   }
 
   updateMessages(funcSuccess, funcErr){
