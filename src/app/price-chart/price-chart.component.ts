@@ -65,7 +65,6 @@ export class PriceChartComponent implements OnInit {
     this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime()/1000 ) , Math.floor(Date.now()/1000 ))
   }
 
-
   private getPriceBetweenInterval(from: number, to: number){
     this.isLoading=true;
     this.cryptoservice.getPriceBetweenInterval(this.currency, from, to)
@@ -98,16 +97,15 @@ export class PriceChartComponent implements OnInit {
           tmpLabels.push(this.tsToDate(obj['time']));
         }
 
-        setTimeout(() =>{          
+        // setTimeout(() =>{          
           this.lineChartLabels= tmpLabels;
           this.lineChartData.push({data: tmpArray, label: this.currency})
-        }, 0);
+        // }, 0);
 
       },
       err => {
         this.isLoading=false;
         this.msgErr=err;
-        console.log("getPriceBetweenInterval "+err)
       }
     );
   }

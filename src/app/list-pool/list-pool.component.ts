@@ -21,7 +21,7 @@ export class ListPoolComponent implements OnInit {
   
   ngOnInit() {
     this.betpool.getPools().subscribe(
-      res => {this.activePools= this.addImgUrl(res['betpools']); console.log(this.activePools)}
+      res => {this.activePools= this.addImgUrl(res['betpools'])}
     );
   }
 

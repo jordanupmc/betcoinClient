@@ -18,8 +18,8 @@
             (chartClick)="chartClicked($event)"></canvas>
     <div *ngIf="enableSelectCurrency" class="form-group">
         <label for="currencySelect">Change crypto-currency</label>
-        <select *ngIf="currency" class="form-control" id="currencySelect" [value]="currency" [(ngModel)]="currency">
-            <option *ngFor="let curr of currencyList" (click)="updateCurrency(curr.val)" [value]="curr.val" >{{curr.name}}</option>
+        <select *ngIf="currency" class="form-control" (change)="updateCurrency($event.target.value)" id="currencySelect"  [value]="currency" [(ngModel)]="currency">
+            <option *ngFor="let curr of currencyList"  [value]="curr.val" >{{curr.name}}</option>
         </select>
     </div>
 
@@ -40,13 +40,3 @@
       </form>
     </div>
   </div>
-  <!-- <div id="tab_value">
-    <table class="table table-responsive table-condensed">
-      <tr>
-        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-      </tr>
-      <tr *ngFor="let d of lineChartData">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-      </tr>
-    </table>
-  </div> -->
