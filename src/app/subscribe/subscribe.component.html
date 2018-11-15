@@ -11,9 +11,12 @@
       'is-invalid': subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty, 
       'is-valid': subscribeForm.controls.login.valid && subscribeForm.controls.login.dirty 
     }" class="form-control" id="loginSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
-    <div class="invalid-feedback" *ngIf="(subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty)">
+    <span class="invalid-feedback" *ngIf="(subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty && subscribeForm.controls.login.errors.pattern)">
       Le login ne doit pas contenir d'espace
-    </div>
+    </span>
+    <span class="invalid-feedback" *ngIf="(subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty && subscribeForm.controls.login.errors.maxlength)">
+       Le login ne doit pas dépasser 100 caractères
+    </span>
   </div>
   <div formGroupName="passwords">
     <div class="form-group">
@@ -31,9 +34,9 @@
         'is-valid': subscribeForm.controls.passwords.valid && subscribeForm['controls'].passwords['controls'].cpassword.dirty 
         }" class="form-control" id="cpasswordSubscribe" aria-describedby="ConfirmPassHelp" placeholder="Confirm Password">
     </div>
-    <div class="invalid-feedback" *ngIf="(subscribeForm.controls.passwords.invalid && subscribeForm['controls'].passwords['controls'].cpassword.dirty)">
+    <span class="invalid-feedback" *ngIf="(subscribeForm.controls.passwords.invalid && subscribeForm['controls'].passwords['controls'].cpassword.dirty)">
       Le mot de passe de confirmation ne correspond pas
-    </div>
+    </span>
   </div>
   <div class="form-group">
     <label for="emailSubscribe">Email</label>
@@ -42,9 +45,9 @@
       'is-valid': subscribeForm.controls.email.valid && subscribeForm.controls.email.dirty 
     }"
      class="form-control" id="emailSubscribe" placeholder="Email"  required>
-     <div class="invalid-feedback" *ngIf="(subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty)">
+     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty)">
         Entrez un email valide 
-    </div>
+     </span>
   </div>
   <div class="form-group">
     <label for="lastNameSubscribe">Last name</label>
@@ -52,6 +55,9 @@
       'is-invalid': subscribeForm.controls.lname.invalid && subscribeForm.controls.lname.dirty, 
       'is-valid': subscribeForm.controls.lname.valid && subscribeForm.controls.lname.dirty 
     }" class="form-control" id="lastNameSubscribe" aria-describedby="loginHelp" placeholder="Last name"required>
+    <span class="invalid-feedback" *ngIf="(subscribeForm.controls.lname.invalid && subscribeForm.controls.lname.dirty && subscribeForm.controls.lname.errors.maxlength)">
+      Le nom ne doit pas dépasser 100 caractères
+   </span>
   </div>
   <div class="form-group">
     <label for="firstNameSubscribe">First name</label>
@@ -59,15 +65,19 @@
       'is-invalid': subscribeForm.controls.fname.invalid && subscribeForm.controls.fname.dirty, 
       'is-valid': subscribeForm.controls.fname.valid && subscribeForm.controls.fname.dirty 
     }" class="form-control" id="firstNameSubscribe" placeholder="First name" required>
-  </div><div class="form-group">
+    <span class="invalid-feedback" *ngIf="(subscribeForm.controls.fname.invalid && subscribeForm.controls.fname.dirty && subscribeForm.controls.fname.errors.maxlength)">
+       Le prénom ne doit pas dépasser 100 caractères
+    </span>
+  </div>
+  <div class="form-group">
     <label for="birthdaySubscribe">Birthday</label>
     <input formControlName="birthday" type="date" class="form-control"  [ngClass]="{
       'is-invalid': subscribeForm.controls.birthday.invalid && subscribeForm.controls.birthday.dirty, 
       'is-valid': subscribeForm.controls.birthday.valid && subscribeForm.controls.birthday.dirty 
     }" id="birthdaySubscribe" aria-describedby="BirthDay" placeholder="Birthday"required>
-    <div class="invalid-feedback" *ngIf="(subscribeForm.controls.birthday.invalid && subscribeForm.controls.birthday.dirty)">
+    <span class="invalid-feedback" *ngIf="(subscribeForm.controls.birthday.invalid && subscribeForm.controls.birthday.dirty)">
       Vous êtes vraiment trop jeune pour rejoindre Betcoin 
-   </div>
+    </span>
   </div>
   <div class="form-group">
     <label for="countrySubscribe">Country</label>

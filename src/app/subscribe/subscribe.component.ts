@@ -31,7 +31,7 @@ export class SubscribeComponent implements OnInit {
   }
 
   subscribeForm = new FormGroup({
-    login: new FormControl('', [Validators.pattern("[^' ']+") ]),
+    login: new FormControl('', [Validators.pattern("[^' ']+") , Validators.maxLength(100)]),
     passwords : new FormGroup({
       password: new FormControl(''),
       cpassword: new FormControl(''),
@@ -39,8 +39,8 @@ export class SubscribeComponent implements OnInit {
     email: new FormControl('', Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$")),
     birthday: new FormControl('', this.dateMax("")),
     country: new FormControl(''),
-    lname: new FormControl(''),
-    fname: new FormControl('')
+    lname: new FormControl('', Validators.maxLength(100)),
+    fname: new FormControl('',Validators.maxLength(100))
   });
   
   error;
@@ -51,7 +51,6 @@ export class SubscribeComponent implements OnInit {
     this.userService.getCountriesName().subscribe(
       res => {
         this.countries=res;
-        console.log(this.countries)
       }
       ,
       err => {
