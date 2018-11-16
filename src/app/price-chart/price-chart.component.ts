@@ -60,7 +60,7 @@ export class PriceChartComponent implements OnInit {
   public fillChart(hour : number){
     this.lineChartData = [];
     this.lineChartLabels=[];
-    this.setLineChartOptionsTitle("Courbe du prix de "+ this.currency + " en EUR au cours des "+ this.hourBefore+" dernières heures");
+    this.setLineChartOptionsTitle("Price of "+ this.currency + " in EUR during the last "+ this.hourBefore+" hours");
 
     this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime()/1000 ) , Math.floor(Date.now()/1000 ))
   }
