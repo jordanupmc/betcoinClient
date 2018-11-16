@@ -157,7 +157,11 @@ export class BetPoolDetailComponent implements OnInit {
                             }
                           }
                           else{
-                            this.result = x['result']+x['gain'];
+                            if(x['gain'] === undefined){
+                              this.result = x['result']
+                            }else{
+                              this.result = x['result']+x['gain'];
+                            }
                             this.resultAvailable();
                             this.appcomp.updateSolde();
 
