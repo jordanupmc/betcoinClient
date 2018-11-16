@@ -12,10 +12,10 @@
       'is-valid': subscribeForm.controls.login.valid && subscribeForm.controls.login.dirty 
     }" class="form-control" id="loginSubscribe" aria-describedby="loginHelp" placeholder="Enter login"required>
     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty && subscribeForm.controls.login.errors.pattern)">
-      Le login ne doit pas contenir d'espace
+      The login must not contain spaces
     </span>
     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.login.invalid && subscribeForm.controls.login.dirty && subscribeForm.controls.login.errors.maxlength)">
-       Le login ne doit pas dépasser 100 caractères
+       The login's size should not exceed 100 letters
     </span>
   </div>
   <div formGroupName="passwords">
@@ -35,7 +35,7 @@
         }" class="form-control" id="cpasswordSubscribe" aria-describedby="ConfirmPassHelp" placeholder="Confirm Password">
     </div>
     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.passwords.invalid && subscribeForm['controls'].passwords['controls'].cpassword.dirty)">
-      Le mot de passe de confirmation ne correspond pas
+      Password and Confirm Password are different
     </span>
   </div>
   <div class="form-group">
@@ -46,7 +46,7 @@
     }"
      class="form-control" id="emailSubscribe" placeholder="Email"  required>
      <span class="invalid-feedback" *ngIf="(subscribeForm.controls.email.invalid && subscribeForm.controls.email.dirty)">
-        Entrez un email valide 
+        Enter a valid email
      </span>
   </div>
   <div class="form-group">
@@ -56,8 +56,8 @@
       'is-valid': subscribeForm.controls.lname.valid && subscribeForm.controls.lname.dirty 
     }" class="form-control" id="lastNameSubscribe" aria-describedby="loginHelp" placeholder="Last name"required>
     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.lname.invalid && subscribeForm.controls.lname.dirty && subscribeForm.controls.lname.errors.maxlength)">
-      Le nom ne doit pas dépasser 100 caractères
-   </span>
+      The last name's size should not exceed 100 letters
+    </span>
   </div>
   <div class="form-group">
     <label for="firstNameSubscribe">First name</label>
@@ -66,7 +66,7 @@
       'is-valid': subscribeForm.controls.fname.valid && subscribeForm.controls.fname.dirty 
     }" class="form-control" id="firstNameSubscribe" placeholder="First name" required>
     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.fname.invalid && subscribeForm.controls.fname.dirty && subscribeForm.controls.fname.errors.maxlength)">
-       Le prénom ne doit pas dépasser 100 caractères
+      The first name's size should not exceed 100 letters
     </span>
   </div>
   <div class="form-group">
@@ -76,7 +76,7 @@
       'is-valid': subscribeForm.controls.birthday.valid && subscribeForm.controls.birthday.dirty 
     }" id="birthdaySubscribe" aria-describedby="BirthDay" placeholder="Birthday"required>
     <span class="invalid-feedback" *ngIf="(subscribeForm.controls.birthday.invalid && subscribeForm.controls.birthday.dirty)">
-      Vous êtes vraiment trop jeune pour rejoindre Betcoin 
+      You are too young to join BetCoin
     </span>
   </div>
   <div class="form-group">

@@ -35,7 +35,7 @@ export class BetPoolDetailComponent implements OnInit {
   resultIsAvailable : boolean = false;
   pooltype : boolean;
   resultTaken : boolean;
-  variation = [{titre:"Montera", value:1}, {titre:"Descendra", value:-1}]
+  variation = [{titre:"Increase", value:1}, {titre:"Decrease", value:-1}]
   result = "";
   betForm = new FormGroup({
     ammount: new FormControl('',Validators.pattern("[0-9]+")),

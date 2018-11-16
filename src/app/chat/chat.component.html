@@ -18,7 +18,7 @@
 							<div id="comment-4" data-commentid="4" class="comment comment-step1">
                                 <span style="white-space: pre-line">{{msg.text | decodeURIPipe}}</span>
                             </div>
-                            <button *ngIf="isAuthor(msg)" type="button" class="btn btn-danger btn-sm" (click)="delete(msg)">Supprimer</button>
+                            <button *ngIf="isAuthor(msg)" type="button" class="btn btn-danger btn-sm" (click)="delete(msg)">Delete</button>
 						</td>
 					</tr>
                 </table>
@@ -28,7 +28,7 @@
 	</div>
     
     <form class="input-group input-group-sm chatMessageControls">
-        <input type="text" class="form-control" placeholder="Entrez un message.." aria-describedby="sizing-addon3"  [formControl]="textInput">    
+        <input type="text" class="form-control" placeholder="Enter a message.." aria-describedby="sizing-addon3"  [formControl]="textInput">    
         <span class="input-group-btn">
             <button id="clearMessageButton" class="btn btn-default" type="button" (click)="clearInput()">Clear</button>
             <button id="sendMessageButton" class="btn" type="submit" (click)="sendMessage()" ><i class="fa fa-send"></i>Send</button>

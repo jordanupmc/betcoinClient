@@ -6,11 +6,11 @@
                   <img [src]="pool?.imgUrl"/>
               </div>
               <h2>{{pool?.name}}<br>
-              <span><i *ngIf="pool?.pooltype" class="fas fa-money-bill"> Juste prix</i>
-              <i *ngIf="!pool?.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
+              <span><i *ngIf="pool?.pooltype" class="fas fa-money-bill">Exact Price</i>
+              <i *ngIf="!pool?.pooltype" class="fas fa-chart-line">UpAndDown</i></span></h2>
               <h5 class="card-title">Id : {{pool?.idbetpool}}</h5>
-              <p class="card-text">Fermeture: {{pool?.closingbet}}</p>
-              <p class="card-text">Résultats: {{pool?.resultbet}}</p>
+              <p class="card-text">Close: {{pool?.closingbet}}</p>
+              <p class="card-text">Results: {{pool?.resultbet}}</p>
           </div>
         </div>
       </td>
@@ -30,39 +30,39 @@
         <button (click)="quitPool()" class="btn btn-lg" >Unfollow Pool</button>
         <form [formGroup]="betForm" (ngSubmit)="bet()">
           <div class="form-group">
-            <label for="ammountInput">Montant a parier en BC</label>
+            <label for="ammountInput">Ammount to bet in BC</label>
             <input formControlName="ammount" type="text" class="form-control" [ngClass]="{
               'is-invalid': betForm.controls.ammount.invalid && betForm.controls.ammount.dirty, 
               'is-valid': betForm.controls.ammount.valid && betForm.controls.ammount.dirty 
-            }" id="ammountInput" placeholder="Entrer un montant en BC"required>
+            }" id="ammountInput" placeholder="Enter a ammount in BC"required>
           </div>
           <div *ngIf="pooltype">
             <div class="form-group">
-              <label for="betValueInput">Pronostique en Euros</label>
+              <label for="betValueInput">Prognosis in Euros</label>
               <input formControlName="betValue" type="text"  [ngClass]="{
                 'is-invalid': betForm.controls.betValue.invalid && betForm.controls.betValue.dirty, 
                 'is-valid': betForm.controls.betValue.valid && betForm.controls.betValue.dirty 
-              }" class="form-control" id="betValueInput" placeholder="Entrer un pronostique en Euros" required>
+              }" class="form-control" id="betValueInput" placeholder="Enter a prognosis in Euros" required>
             </div>
           </div>
           <div *ngIf="!pooltype">
             <div class="form-group">
-                <label for="betValueInput">Pronostique sur la variation</label>
+                <label for="betValueInput">Prognosis on the UpAndDown</label>
                 <select *ngIf="variation" class="form-control" formControlName="betValue" id="betValueInput" required>
                     <option *ngFor="let vari of variation" [value]="vari.value">{{vari.titre}}</option>
                 </select>
             </div>
           </div>
-          <button [disabled]="!betForm.valid" type="submit" class="btn btn-lg">Parier !</button>
+          <button [disabled]="!betForm.valid" type="submit" class="btn btn-lg">Bet !</button>
         </form>
     </div>
   
   <div *ngIf="haveDoneBet && !resultIsAvailable && !resultTaken">
-    <button (click)="cancelBet();show = false" class="btn btn-lg">Annuler Pari</button>
+    <button (click)="cancelBet();show = false" class="btn btn-lg">Cancel Bet</button>
   </div>
   
   <div *ngIf="resultIsAvailable">
-    <button (click)="retrieve()" class="btn btn-lg">Voir Résultat</button>
+    <button (click)="retrieve()" class="btn btn-lg">See Result</button>
   </div>
   <app-chat *ngIf="pool?.idbetpool" [idPool]="pool?.idbetpool"></app-chat>
   

@@ -26,23 +26,23 @@
 									<img [src]="bet.imgUrl"/>
 							</div>
 							<h2>{{bet.name}}<br>
-							<span><i *ngIf="bet.pooltype" class="fas fa-money-bill"> Juste prix</i>
-							<i *ngIf="!bet.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
+							<span><i *ngIf="bet.pooltype" class="fas fa-money-bill">Exact Price</i>
+							<i *ngIf="!bet.pooltype" class="fas fa-chart-line">UpAndDown</i></span></h2>
 							<h5 class="card-title">Id : {{bet.idBetPool}}</h5>
-							<p class="card-text">Montant parié: {{bet.betAmount}}BC</p>
-							<p *ngIf="bet.pooltype" class="card-text">Pronostique: {{bet.betValue}}€</p>
+							<p class="card-text">Ammount bet: {{bet.betAmount}}BC</p>
+							<p *ngIf="bet.pooltype" class="card-text">Prognosis: {{bet.betValue}}€</p>
 							<div *ngIf="!bet.pooltype">
-								<p *ngIf="bet.betValue == 1" class="card-text">Pronostique: Montera</p>		
-								<p *ngIf="bet.betValue == -1" class="card-text">Pronostique: Descendra</p>
+								<p *ngIf="bet.betValue == 1" class="card-text">Prognosis: Increase</p>		
+								<p *ngIf="bet.betValue == -1" class="card-text">Prognosis: Descrease</p>
 								<p></p>
 							</div>
-							<p class="card-text">Fait le: {{bet.betDate}}</p>
-							<h5 *ngIf="bet.resultAvailable">Résultat disponible</h5>
-							<h5 *ngIf="bet.resultTaken">Résultat déjà vérifié</h5>
+							<p class="card-text">Done the: {{bet.betDate}}</p>
+							<h5 *ngIf="bet.resultAvailable">Result available</h5>
+							<h5 *ngIf="bet.resultTaken">Result already checked</h5>
 
 
 					</div>
 				</div>
 	</div>
 </div>
-<h1 *ngIf="!myBets.length">Aucun pari fait</h1>
+<h1 *ngIf="!myBets.length">No bet done</h1>

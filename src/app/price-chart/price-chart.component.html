@@ -24,19 +24,19 @@
     </div>
 
     <div *ngIf="enableChangeInterval" id="form_affich">
-      <p>Afficher un intervalle</p>
+      <p>Choose an interval (It has to be at most an interval of 33 hours)</p>
       <form [formGroup]="intervalForm" (ngSubmit)="changeInterval()">
-        <p>Depuis </p>
+        <p>From </p>
         <div class="form-group">
           <input formControlName="fromDate" type="date" required>
           <input formControlName="fromTime" type="time" required>
         </div>
-        <p style="padding-left: 50px">Jusqu'à </p>
+        <p style="padding-left: 50px">To </p>
         <div class="form-group">
           <input formControlName="toDate" type="date" required>
           <input formControlName="toTime" type="time" required>
         </div>
-        <button *ngIf="!isLoading" id="button_affich" [disabled]="!intervalForm.valid" type="submit" class="btn">Changer l'intervalle</button>
+        <button *ngIf="!isLoading" id="button_affich" [disabled]="!intervalForm.valid" type="submit" class="btn">Change inteval</button>
       </form>
     </div>
   </div>

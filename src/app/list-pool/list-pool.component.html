@@ -4,23 +4,23 @@
 	</div>
 </div>
 
-<h1>Liste des paris actifs</h1>
+<h1>List active bet</h1>
 
 <h3>Show</h3>
 <div class="form-check">
 	<input class="form-check-input" type="checkbox" value="" id="jp"  [(ngModel)]="jpModel">
 	<label class="form-check-label" for="jp">
-	  Juste prix
+	  Exact Price
 	</label>
   </div>
   <div class="form-check">
 	<input class="form-check-input" type="checkbox" value="" id="Variation"  [(ngModel)]="variationModel">
 	<label class="form-check-label" for="Variation">
-	  Variation
+	  UpAndDown
 	</label>
   </div>
 <i *ngIf="!activePools.length && !showEmptyData" class="fas fa-spin fa-circle-notch"></i>
-<span *ngIf="showEmptyData">Aucun paris disponible</span>
+<span *ngIf="showEmptyData">No bets available</span>
 <div class="row">
 	<div *ngFor="let pool of activePools | betPools :jpModel:variationModel" (click)="enterPool(pool)" routerLink="/poolDetail/{{pool.idbetpool}}" style="cursor: pointer;">
 			<div class="card">
@@ -29,11 +29,11 @@
 									<img [src]="pool.imgUrl"/>
 							</div>
 							<h2>{{pool.name}}<br>
-							<span><i *ngIf="pool.pooltype" class="fas fa-money-bill"> Juste prix</i>
-							<i *ngIf="!pool.pooltype" class="fas fa-chart-line"> Variation</i></span></h2>
+							<span><i *ngIf="pool.pooltype" class="fas fa-money-bill">Exact Price</i>
+							<i *ngIf="!pool.pooltype" class="fas fa-chart-line">UpAndDown</i></span></h2>
 							<h5 class="card-title">Id : {{pool.idbetpool}}</h5>
-							<p class="card-text">Fermeture: {{pool.closingbet}}</p>
-              				<p class="card-text">Résultat: {{pool.resultbet}}</p>
+							<p class="card-text">Close: {{pool.closingbet}}</p>
+              <p class="card-text">Result: {{pool.resultbet}}</p>
           </div>
 				</div>
 	</div>
