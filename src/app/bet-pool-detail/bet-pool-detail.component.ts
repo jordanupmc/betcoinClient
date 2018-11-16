@@ -39,7 +39,7 @@ export class BetPoolDetailComponent implements OnInit {
   result = "";
   betForm = new FormGroup({
     ammount: new FormControl('',Validators.pattern("[0-9]+")),
-    betValue: new FormControl('', Validators.pattern("[0-9]+([.,][0-9]+)?$"))
+    betValue: new FormControl('', Validators.pattern("(-?)[0-9]+([.][0-9]+)?$"))
   });
 
   
