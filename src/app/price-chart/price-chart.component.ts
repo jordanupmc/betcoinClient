@@ -16,8 +16,6 @@ export class PriceChartComponent implements OnInit {
 
   constructor(private cryptoservice : CryptoCompareService, private routeur : Router) {
     this.currency = 'ETH'; 
-    // this.enableChangeInterval=false;
-    // this.enableSelectCurrency=false;
   }
   
   currencyList = [
@@ -65,6 +63,7 @@ export class PriceChartComponent implements OnInit {
     this.getPriceBetweenInterval(Math.floor(new Date(Date.now() - (1000*60*60*hour) ).getTime()/1000 ) , Math.floor(Date.now()/1000 ))
   }
 
+  // Fais appel a l'API cryptoCompare avec comme arguments un intervalle de temps de 'from' a 'to' et met a jour le chart 
   private getPriceBetweenInterval(from: number, to: number){
     this.isLoading=true;
     this.cryptoservice.getPriceBetweenInterval(this.currency, from, to)
@@ -109,6 +108,10 @@ export class PriceChartComponent implements OnInit {
       }
     );
   }
+
+  // Permet de changer l'intervalle de temps du chart
+  //Si from > to on fais un swap et on recupere l'intervalle [to; from]
+  //De plus si from == to on recupere l'intervalle [now()-hourBefore; to]
   changeInterval(){
     let from = Math.floor((new Date (this.intervalForm.value.fromDate+" "+this.intervalForm.value.fromTime).getTime()) / 1000);
     let to = Math.floor((new Date (this.intervalForm.value.toDate+" "+this.intervalForm.value.toTime).getTime()) / 1000);
@@ -121,9 +124,9 @@ export class PriceChartComponent implements OnInit {
     if( from == to )
       from = Math.floor(new Date(Date.now() - (1000*60*60*this.hourBefore) ).getTime() /1000);
     
-    this.setLineChartOptionsTitle("Courbe du prix de "+ this.currency + " en EUR entre "
+    this.setLineChartOptionsTitle("Price of "+ this.currency + " in EUR between "
     + this.intervalForm.value.fromDate+" "+this.intervalForm.value.fromTime
-     +" et "+ this.intervalForm.value.toDate+" "+this.intervalForm.value.toTime);
+     +" and "+ this.intervalForm.value.toDate+" "+this.intervalForm.value.toTime);
 
     if(from > to)
       this.getPriceBetweenInterval(to, from);
