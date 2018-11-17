@@ -72,6 +72,11 @@
     background-color: #c33c54;
     color:#f9ebe0;
 }
+#refreshButton{
+    background-color: #37718e;
+    color:#f9ebe0;
+    float:right;
+}
 
 .fa {
     

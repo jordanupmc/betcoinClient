@@ -46,6 +46,30 @@ export class ChatComponent implements OnInit {
                                 )
   }
 
+  public refresh(){
+    this.updateMessages( this.successGetMessage, this.errorGetMessage );
+  }
+
+  successGetMessage = res => {
+      if(res["status"] == "OK") {
+        for (let msg of res["messages"]) {
+          this.messages.push(msg);
+        }
+      }else{
+        var redir = res['redictLogin'];
+        if(redir){
+          localStorage.clear();
+          window.alert("You have been disconnected\n Please log in again");
+          this.routeur.navigate(['login']);
+        }
+        this.messages = [];
+      }
+  };
+
+  errorGetMessage = e => {
+      console.log(e);
+  }
+
   clearInput(){
     this.textInput.reset();
   }
@@ -68,24 +92,7 @@ export class ChatComponent implements OnInit {
                           this.loading=false;
                           // On met a jour la vue en faisant une requete au serveur pour récup le message envoyé + les eventuels messages recu entre temps
                           if(res["status"] == "OK"){
-                            this.updateMessages( res => {
-                              if(res["status"] == "OK") {
-                                for (let msg of res["messages"]) {
-                                  this.messages.push(msg);
-                                }
-                              }else{
-                                var redir = res['redictLogin'];
-                                if(redir){
-                                  localStorage.clear();
-                                  window.alert("You have been disconnected\n Please log in again");
-                                  this.routeur.navigate(['login']);
-                                }
-                                this.messages = [];
-                              }
-                          }, 
-                            e => {
-                                console.log(e);
-                            }
+                            this.updateMessages( this.successGetMessage, this.errorGetMessage
                           );
                           }else{
                             var redir = res['redictLogin'];

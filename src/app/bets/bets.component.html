@@ -4,7 +4,7 @@
 
 
 <i *ngIf="!myBets" class="fas fa-spin fa-circle-notch"></i>
-<div *ngIf="myBets" class="row">
+<div class="row">
 	<div *ngFor="let bet of myBets" routerLink="/poolDetail/{{bet.idBetPool}}" style="cursor: pointer;">
 			<div class="card">
 					<div class="box">
