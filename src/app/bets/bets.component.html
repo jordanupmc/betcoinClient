@@ -12,8 +12,8 @@
 									<img [src]="bet.imgUrl"/>
 							</div>
 							<h2>{{bet.name}}<br>
-							<span><i *ngIf="bet.pooltype" class="fas fa-money-bill">Exact Price</i>
-							<i *ngIf="!bet.pooltype" class="fas fa-chart-line">UpAndDown</i></span></h2>
+							<span><i *ngIf="bet.pooltype" class="fas fa-money-bill"> Exact Price</i>
+							<i *ngIf="!bet.pooltype" class="fas fa-chart-line"> UpAndDown</i></span></h2>
 							<h5 class="card-title">Id : {{bet.idBetPool}}</h5>
 							<p class="card-text">Ammount bet: {{bet.betAmount}}BC</p>
 							<p *ngIf="bet.pooltype" class="card-text">Prognosis: {{bet.betValue}}€</p>
