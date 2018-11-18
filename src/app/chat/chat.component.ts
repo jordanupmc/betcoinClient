@@ -20,14 +20,21 @@ export class ChatComponent implements OnInit {
   urlImg;
   messages : any[];
   loading=false;
+  gravatarUrl : any[];
+
   ngOnInit() {  
-    this.urlImg = this.userservice.getIconUrl(localStorage.getItem("email"));
     this.poolservice.getAllMessage(this.idPool, localStorage.getItem("login"), localStorage.getItem("token"))
                     .subscribe(res=>{ 
+                      this.gravatarUrl = res["setMail"];
                       this.messages = res["messages"];
+                    
                       //si aucun message n'a ete poste res["messages"] vaut undefined il faut donc affecter une liste vide 
                       if(this.messages === undefined)
                         this.messages = [];
+
+                      if(this.gravatarUrl === undefined){
+                        this.gravatarUrl = [];
+                      }
                      });
   }
 
@@ -52,9 +59,15 @@ export class ChatComponent implements OnInit {
 
   successGetMessage = res => {
       if(res["status"] == "OK") {
+        
         for (let msg of res["messages"]) {
           this.messages.push(msg);
         }
+        let tmpArr = [];
+        for(let mail of res["setMail"]){
+            tmpArr.push(mail);
+        }
+        this.gravatarUrl = tmpArr;
       }else{
         var redir = res['redictLogin'];
         if(redir){
@@ -63,6 +76,7 @@ export class ChatComponent implements OnInit {
           this.routeur.navigate(['login']);
         }
         this.messages = [];
+        this.gravatarUrl = [];
       }
   };
 
@@ -72,12 +86,21 @@ export class ChatComponent implements OnInit {
 
   clearInput(){
     this.textInput.reset();
+    
   }
 
   isAuthor(msg){
     return msg.gamblerLogin == localStorage.getItem("login");
   }
 
+  findGravatar(login){
+    let r = this.gravatarUrl.find(obj => {
+      return obj.login == login;
+    });
+    if(r !== undefined)
+      return r.gravatarUrl;
+    return "https://www.gravatar.com/avatar/";
+  }
 
   sendMessage(){
     if(!this.textInput.valid || (this.textInput.value).trim() == '' )
@@ -101,7 +124,6 @@ export class ChatComponent implements OnInit {
                               window.alert("You have been disconnected\n Please log in again");
                               this.routeur.navigate(['login']);
                             }
-                            console.log(res);
                           }
                       },
                       err =>{

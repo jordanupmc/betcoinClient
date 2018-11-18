@@ -8,7 +8,7 @@
 					<tr>
                         <td>
                             <div class="comment-avatar">
-                                <img [src]="urlImg" *ngIf="urlImg">
+                                <img [src]="findGravatar(msg.gamblerLogin)" *ngIf="gravatarUrl">
                             </div>
                         </td>
                         <td><div class="comment-user">{{msg .gamblerLogin}}</div></td>

@@ -12,10 +12,7 @@ export class UserService {
   }
 
   public subscribe(userProfile : UserProfile){
-    // return this.http.get(this.apiURL+"subscribe?login="+userProfile.login+"&password="+userProfile.password+"&confirmPassword="+userProfile.confirmPassword
-    // +"&email="+userProfile.email+"&lastName="+userProfile.lastName+"&firstName="+userProfile.firstName+"&dateNaiss="+userProfile.dateNaiss+"&country="+userProfile.country)
-    return this.http.post(apiURL+"subscribe", userProfile);
-
+     return this.http.post(apiURL+"subscribe", userProfile);
   }
 
   public unsubscribe(login : string, token: string, password : string){
