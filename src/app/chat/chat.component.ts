@@ -63,11 +63,11 @@ export class ChatComponent implements OnInit {
         for (let msg of res["messages"]) {
           this.messages.push(msg);
         }
-        let tmpArr = [];
+        
         for(let mail of res["setMail"]){
-            tmpArr.push(mail);
+          if(this.gravatarUrl.find( x => ( x.login == mail.login ) ))
+            this.gravatarUrl.push(mail);
         }
-        this.gravatarUrl = tmpArr;
       }else{
         var redir = res['redictLogin'];
         if(redir){
