@@ -65,7 +65,7 @@ export class ChatComponent implements OnInit {
         }
         
         for(let mail of res["setMail"]){
-          if(this.gravatarUrl.find( x => ( x.login == mail.login ) ))
+          if(this.gravatarUrl.find( x => ( x.login == mail.login ) )===undefined)
             this.gravatarUrl.push(mail);
         }
       }else{
